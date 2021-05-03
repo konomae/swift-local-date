@@ -10,9 +10,14 @@ final class LocalDateTests: XCTestCase {
     }
     
     func test_init_from_date_in_timeZone() {
-        let date = LocalDate(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!)
+        var date = LocalDate(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!)
         XCTAssertEqual(date.year, 1970)
         XCTAssertEqual(date.month, 1)
         XCTAssertEqual(date.day, 1)
+        
+        date = LocalDate(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: -60)!)
+        XCTAssertEqual(date.year, 1969)
+        XCTAssertEqual(date.month, 12)
+        XCTAssertEqual(date.day, 31)
     }
 }
