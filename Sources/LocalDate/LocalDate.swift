@@ -11,7 +11,7 @@ public struct LocalDate {
         self.day = day
     }
     
-    public init(from date: Date, in timeZone: TimeZone) {
+    public init(from date: Date = .init(), in timeZone: TimeZone = .current) {
         let components = Calendar(identifier: .gregorian).dateComponents(in: timeZone, from: date)
         year = components.year!
         month = components.month!
