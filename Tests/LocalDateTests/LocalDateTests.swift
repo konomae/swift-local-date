@@ -50,4 +50,11 @@ final class LocalDateTests: XCTestCase {
             Date(timeIntervalSince1970: 3600)
         )
     }
+    
+    func test_string() {
+        XCTAssertEqual(
+            LocalDate(year: 1970, month: 1, day: 1).string(),
+            "1970-01-01"
+        )
+    }
 }

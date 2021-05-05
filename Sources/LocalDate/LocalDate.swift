@@ -40,6 +40,12 @@ public struct LocalDate {
         
         return components.date!
     }
+    
+    public func string() -> String {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = .withFullDate
+        return f.string(from: date(in: TimeZone(secondsFromGMT: 0)!))
+    }
 }
 
 public extension LocalDate {
