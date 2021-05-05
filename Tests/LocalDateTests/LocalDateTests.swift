@@ -20,4 +20,22 @@ final class LocalDateTests: XCTestCase {
         XCTAssertEqual(date.month, 12)
         XCTAssertEqual(date.day, 31)
     }
+    
+    func test_init_from_string() throws {
+        var date = try LocalDate(from: "1970-01-01")
+        XCTAssertEqual(date.year, 1970)
+        XCTAssertEqual(date.month, 1)
+        XCTAssertEqual(date.day, 1)
+        
+        date = try LocalDate(from: "1970/01/01")
+        XCTAssertEqual(date.year, 1970)
+        XCTAssertEqual(date.month, 1)
+        XCTAssertEqual(date.day, 1)
+    }
+    
+    func test_init_from_string_error() {
+        XCTAssertThrowsError(try LocalDate(from: "19700101")) {
+            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+        }
+    }
 }

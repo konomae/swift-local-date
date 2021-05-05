@@ -17,4 +17,21 @@ public struct LocalDate {
         month = components.month!
         day = components.day!
     }
+    
+    public init(from string: String) throws {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = .withFullDate
+        
+        guard let date = f.date(from: string) else {
+            throw Error.invalidStringFormat
+        }
+        
+        self.init(from: date)
+    }
+}
+
+public extension LocalDate {
+    enum Error: Swift.Error, Equatable {
+        case invalidStringFormat
+    }
 }
