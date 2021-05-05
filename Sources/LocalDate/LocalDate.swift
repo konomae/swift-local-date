@@ -48,6 +48,19 @@ public struct LocalDate {
     }
 }
 
+extension LocalDate: Codable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
+        try self.init(from: string)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(string())
+    }
+}
+
 public extension LocalDate {
     enum Error: Swift.Error, Equatable {
         case invalidStringFormat

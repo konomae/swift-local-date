@@ -57,4 +57,18 @@ final class LocalDateTests: XCTestCase {
             "1970-01-01"
         )
     }
+    
+    func test_init_from_decoder() throws {
+        let decoder = JSONDecoder()
+        let date = try decoder.decode(LocalDate.self, from: Data("\"1970-01-01\"".utf8))
+        XCTAssertEqual(date.year, 1970)
+        XCTAssertEqual(date.month, 1)
+        XCTAssertEqual(date.day, 1)
+    }
+    
+    func test_encode_to_encoder() throws {
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(LocalDate(year: 1970, month: 1, day: 1))
+        XCTAssertEqual(data, Data("\"1970-01-01\"".utf8))
+    }
 }
