@@ -28,6 +28,18 @@ public struct LocalDate {
         
         self.init(from: date)
     }
+    
+    public func date(in timeZone: TimeZone) -> Date {
+        let components = DateComponents(
+            calendar: Calendar(identifier: .gregorian),
+            timeZone: timeZone,
+            year: year,
+            month: month,
+            day: day
+        )
+        
+        return components.date!
+    }
 }
 
 public extension LocalDate {

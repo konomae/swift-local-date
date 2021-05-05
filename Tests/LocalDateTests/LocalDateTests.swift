@@ -38,4 +38,16 @@ final class LocalDateTests: XCTestCase {
             XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
         }
     }
+    
+    func test_date_in_timeZone() {
+        XCTAssertEqual(
+            LocalDate(year: 1970, month: 1, day: 1).date(in: TimeZone(secondsFromGMT: 0)!),
+            Date(timeIntervalSince1970: 0)
+        )
+        
+        XCTAssertEqual(
+            LocalDate(year: 1970, month: 1, day: 1).date(in: TimeZone(secondsFromGMT: -3600)!),
+            Date(timeIntervalSince1970: 3600)
+        )
+    }
 }
