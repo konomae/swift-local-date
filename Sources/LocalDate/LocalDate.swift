@@ -19,10 +19,7 @@ public struct LocalDate: Hashable {
     }
     
     public init(from string: String) throws {
-        let f = ISO8601DateFormatter()
-        f.formatOptions = .withFullDate
-        
-        guard let date = f.date(from: string) else {
+        guard let date = formatter.date(from: string) else {
             throw Error.invalidStringFormat
         }
         
@@ -42,9 +39,7 @@ public struct LocalDate: Hashable {
     }
     
     public func string() -> String {
-        let f = ISO8601DateFormatter()
-        f.formatOptions = .withFullDate
-        return f.string(from: date(in: TimeZone(secondsFromGMT: 0)!))
+        formatter.string(from: date(in: formatter.timeZone))
     }
 }
 
@@ -66,3 +61,9 @@ public extension LocalDate {
         case invalidStringFormat
     }
 }
+
+private let formatter: ISO8601DateFormatter = {
+    let f = ISO8601DateFormatter()
+    f.formatOptions = .withFullDate
+    return f
+}()
