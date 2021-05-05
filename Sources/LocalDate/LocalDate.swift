@@ -62,8 +62,10 @@ public extension LocalDate {
     }
 }
 
-private let formatter: ISO8601DateFormatter = {
-    let f = ISO8601DateFormatter()
-    f.formatOptions = .withFullDate
+private let formatter: DateFormatter = {
+    let f = DateFormatter()
+    f.locale = Locale(identifier: "en_US_POSIX")
+    f.dateFormat = "yyyy-MM-dd"
+    f.timeZone = TimeZone(secondsFromGMT: 0)!
     return f
 }()

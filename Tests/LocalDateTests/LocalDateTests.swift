@@ -30,6 +30,10 @@ final class LocalDateTests: XCTestCase {
         XCTAssertThrowsError(try LocalDate(from: "19700101")) {
             XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
         }
+        
+        XCTAssertThrowsError(try LocalDate(from: "1970-01-01T00:00:00+00:00")) {
+            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+        }
     }
     
     func test_date_in_timeZone() {

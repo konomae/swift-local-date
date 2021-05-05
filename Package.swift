@@ -5,12 +5,6 @@ import PackageDescription
 
 let package = Package(
     name: "LocalDate",
-    platforms: [
-        .iOS(.v10),
-        .macOS(.v10_12),
-        .tvOS(.v10),
-        .watchOS(.v3),
-    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
