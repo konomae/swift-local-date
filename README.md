@@ -1,5 +1,7 @@
 # LocalDate for Swift
 
+[![Swift](https://github.com/konomae/LocalDate/actions/workflows/swift.yml/badge.svg)](https://github.com/konomae/LocalDate/actions/workflows/swift.yml)
+
 `LocalDate` is a struct that represents a date without a time zone, such as a birthday.
 This library provides the ability to convert a `LocalDate` to a `Date` or `String` and vice versa.
 
