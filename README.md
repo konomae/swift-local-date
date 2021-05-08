@@ -5,6 +5,14 @@ This library provides the ability to convert a `LocalDate` to a `Date` or `Strin
 
 (This is similar to `java.time.LocalDate`, but this is not intended to be compatible with it. 🙏)
 
+## Installation
+
+Add the following line to the dependencies in your `Package.swift` file.
+
+```swift
+.package(url: "https://github.com/konomae/LocalDate", from: "0.1.0"),
+```
+
 ## Example
 
 ```swift
