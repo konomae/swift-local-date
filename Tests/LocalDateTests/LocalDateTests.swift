@@ -65,4 +65,21 @@ final class LocalDateTests: XCTestCase {
             Data("\"1970-01-01\"".utf8)
         )
     }
+    
+    func test_comparable() {
+        XCTAssertLessThan(
+            LocalDate(year: 1969, month: 12, day: 31),
+            LocalDate(year: 1970, month: 1, day: 1)
+        )
+        
+        XCTAssertLessThan(
+            LocalDate(year: 1970, month: 1, day: 1),
+            LocalDate(year: 1970, month: 2, day: 1)
+        )
+        
+        XCTAssertLessThan(
+            LocalDate(year: 1970, month: 1, day: 1),
+            LocalDate(year: 1970, month: 1, day: 2)
+        )
+    }
 }

@@ -54,6 +54,12 @@ extension LocalDate: Codable {
     }
 }
 
+extension LocalDate: Comparable {
+    public static func < (lhs: LocalDate, rhs: LocalDate) -> Bool {
+        (lhs.year, lhs.month, lhs.day) < (rhs.year, rhs.month, rhs.day)
+    }
+}
+
 public extension LocalDate {
     enum Error: Swift.Error, Equatable {
         case invalidStringFormat
