@@ -17,11 +17,22 @@ public struct LocalDate: Hashable {
     }
     
     public init(from string: String) throws {
-        guard let date = formatter.date(from: string) else {
+        let components = string.utf8.split(
+            separator: .init(ascii: "-"),
+            maxSplits: 3,
+            omittingEmptySubsequences: false
+        )
+        
+        guard
+            components.count == 3,
+            let year = Int(Substring(components[0])),
+            let month = Int(Substring(components[1])),
+            let day = Int(Substring(components[2]))
+        else {
             throw Error.invalidStringFormat
         }
         
-        self.init(from: date)
+        self.init(year: year, month: month, day: day)
     }
     
     public func date(in timeZone: TimeZone) -> Date {
@@ -37,7 +48,7 @@ public struct LocalDate: Hashable {
     }
     
     public func string() -> String {
-        formatter.string(from: date(in: formatter.timeZone))
+        String(format: "%04ld-%02ld-%02ld", year, month, day)
     }
 }
 
@@ -65,11 +76,3 @@ public extension LocalDate {
         case invalidStringFormat
     }
 }
-
-private let formatter: DateFormatter = {
-    let f = DateFormatter()
-    f.locale = Locale(identifier: "en_US_POSIX")
-    f.dateFormat = "yyyy-MM-dd"
-    f.timeZone = TimeZone(secondsFromGMT: 0)!
-    return f
-}()
