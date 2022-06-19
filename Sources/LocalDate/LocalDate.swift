@@ -17,7 +17,10 @@ public struct LocalDate: Hashable {
     }
     
     public init(from string: String) throws {
-        let components = string.utf8.split(
+        let hasSign = string.hasPrefix("-")
+        let startIndex = string.index(string.startIndex, offsetBy: hasSign ? 1 : 0)
+        
+        let components = string[startIndex...].utf8.split(
             separator: .init(ascii: "-"),
             maxSplits: 3,
             omittingEmptySubsequences: false
@@ -32,7 +35,7 @@ public struct LocalDate: Hashable {
             throw Error.invalidStringFormat
         }
         
-        self.init(year: year, month: month, day: day)
+        self.init(year: year * (hasSign ? -1 : 1), month: month, day: day)
     }
     
     public func date(in timeZone: TimeZone) -> Date {
