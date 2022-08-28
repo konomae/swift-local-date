@@ -70,7 +70,18 @@ extension LocalTime: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
-        try self.init(from: string)
+        
+        do {
+            try self.init(from: string)
+        } catch {
+            throw DecodingError.dataCorrupted(
+                DecodingError.Context(
+                    codingPath: container.codingPath,
+                    debugDescription: "invalid format",
+                    underlyingError: error
+                )
+            )
+        }
     }
     
     public func encode(to encoder: Encoder) throws {

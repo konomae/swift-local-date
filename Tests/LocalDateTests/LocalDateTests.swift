@@ -101,8 +101,22 @@ final class LocalDateTests: XCTestCase {
             LocalDate(year: 1970, month: 1, day: 1)
         )
         
-        XCTAssertThrowsError(try JSONDecoder().decode(LocalDate.self, from: Data("\"19700101\"".utf8))) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+        struct A: Decodable {
+            var b: B
+        }
+        
+        struct B: Decodable {
+            var value: LocalDate
+        }
+        
+        XCTAssertThrowsError(try JSONDecoder().decode(A.self, from: Data(#"{"b": {"value": "19700101"}}"#.utf8))) {
+            if case let .dataCorrupted(context) = $0 as? DecodingError {
+                XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
+                XCTAssertEqual(context.debugDescription, "invalid format")
+                XCTAssertEqual(context.underlyingError as? LocalDate.Error, .invalidStringFormat)
+            } else {
+                XCTFail()
+            }
         }
     }
     

@@ -69,8 +69,22 @@ final class LocalTimeTests: XCTestCase {
             LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 400000000)
         )
         
-        XCTAssertThrowsError(try JSONDecoder().decode(LocalTime.self, from: Data("\"235959\"".utf8))) {
-            XCTAssertEqual($0 as? LocalTime.Error, .invalidStringFormat)
+        struct A: Decodable {
+            var b: B
+        }
+        
+        struct B: Decodable {
+            var value: LocalTime
+        }
+        
+        XCTAssertThrowsError(try JSONDecoder().decode(A.self, from: Data(#"{"b": {"value": "235959"}}"#.utf8))) {
+            if case let .dataCorrupted(context) = $0 as? DecodingError {
+                XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
+                XCTAssertEqual(context.debugDescription, "invalid format")
+                XCTAssertEqual(context.underlyingError as? LocalTime.Error, .invalidStringFormat)
+            } else {
+                XCTFail()
+            }
         }
     }
     
