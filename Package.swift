@@ -26,10 +26,10 @@ let package = Package(
             name: "LocalDateTests",
             dependencies: ["LocalDate"]),
         .target(
-          name: "swift-local-date-benchmark",
-          dependencies: [
-            "LocalDate",
-            .product(name: "Benchmark", package: "Benchmark"),
-          ]),
+            name: "swift-local-date-benchmark",
+            dependencies: [
+                "LocalDate",
+                .product(name: "Benchmark", package: "Benchmark"),
+            ]),
     ]
 )
