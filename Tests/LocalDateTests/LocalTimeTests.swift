@@ -68,6 +68,10 @@ final class LocalTimeTests: XCTestCase {
             try JSONDecoder().decode(LocalTime.self, from: Data("\"01:02:03.4\"".utf8)),
             LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 400000000)
         )
+        
+        XCTAssertThrowsError(try JSONDecoder().decode(LocalTime.self, from: Data("\"235959\"".utf8))) {
+            XCTAssertEqual($0 as? LocalTime.Error, .invalidStringFormat)
+        }
     }
     
     func test_encode_to_encoder() throws {

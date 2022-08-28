@@ -100,6 +100,10 @@ final class LocalDateTests: XCTestCase {
             try JSONDecoder().decode(LocalDate.self, from: Data("\"1970-01-01\"".utf8)),
             LocalDate(year: 1970, month: 1, day: 1)
         )
+        
+        XCTAssertThrowsError(try JSONDecoder().decode(LocalDate.self, from: Data("\"19700101\"".utf8))) {
+            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+        }
     }
     
     func test_encode_to_encoder() throws {
