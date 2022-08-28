@@ -56,8 +56,17 @@ final class LocalDateTests: XCTestCase {
         )
     }
     
-    func test_string() {
-        XCTAssertEqual(LocalDate(year: 1970, month: 1, day: 1).string(), "1970-01-01")
+    func test_description() {
+        XCTAssertEqual(LocalDate(year: 1970, month: 1, day: 1).description, "1970-01-01")
+        XCTAssertEqual(String(describing: LocalDate(year: 1970, month: 1, day: 1)), "1970-01-01")
+    }
+    
+    func test_init_from_description() {
+        XCTAssertNil(LocalDate("19700101"))
+        XCTAssertEqual(
+            LocalDate(LocalDate(year: 1970, month: 1, day: 1).description),
+            LocalDate(year: 1970, month: 1, day: 1)
+        )
     }
     
     func test_init_from_decoder() throws {

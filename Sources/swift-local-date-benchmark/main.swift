@@ -6,8 +6,8 @@ benchmark("LocalDate.init(from:)") {
 }
 
 let d = LocalDate(year: 1970, month: 12, day: 31)
-benchmark("LocalDate.string") {
-    _ = d.string()
+benchmark("LocalDate.description") {
+    _ = d.description
 }
 
 Benchmark.main()

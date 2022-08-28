@@ -49,9 +49,17 @@ public struct LocalDate: Hashable {
         
         return components.date!
     }
-    
-    public func string() -> String {
+}
+
+extension LocalDate: CustomStringConvertible {
+    public var description: String {
         String(format: "%04ld-%02ld-%02ld", year, month, day)
+    }
+}
+
+extension LocalDate: LosslessStringConvertible {
+    public init?(_ description: String) {
+        try? self.init(from: description)
     }
 }
 
@@ -64,7 +72,7 @@ extension LocalDate: Codable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(string())
+        try container.encode(description)
     }
 }
 

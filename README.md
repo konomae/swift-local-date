@@ -24,7 +24,7 @@ let localDate = try LocalDate(from: "1970-01-01")
 print(localDate.year) // 1970
 print(localDate.month) // 1
 print(localDate.day) // 1
-print(localDate.string()) // 1970-01-01
+print(localDate.description) // 1970-01-01
 
 var date: Date = localDate.date(in: TimeZone(secondsFromGMT: 0)!)
 print(date) // 1970-01-01 00:00:00 +0000
