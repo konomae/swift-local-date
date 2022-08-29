@@ -28,4 +28,13 @@ benchmark("LocalDateTime.description") {
     _ = dt.description
 }
 
+benchmark("ZoneOffset.init(from:)") {
+    _ = try ZoneOffset(from: "+02:30")
+}
+
+let zo = ZoneOffset(second: 9000)
+benchmark("ZoneOffset.description") {
+    _ = zo.description
+}
+
 Benchmark.main()
