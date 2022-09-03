@@ -37,4 +37,16 @@ benchmark("ZoneOffset.description") {
     _ = zo.description
 }
 
+benchmark("OffsetDateTime.init(from:)") {
+    _ = try OffsetDateTime(from: "1970-12-31T01:02:03.4+02:30")
+}
+
+let odt = OffsetDateTime(
+    dateTime: .init(year: 1970, month: 12, day: 31, hour: 23, minute: 59, second: 59, nanosecond: 999999999),
+    offset: .init(second: 9000)
+)
+benchmark("OffsetDateTime.description") {
+    _ = odt.description
+}
+
 Benchmark.main()
