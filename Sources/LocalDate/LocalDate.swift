@@ -53,8 +53,7 @@ public struct LocalDate: Hashable {
 
 extension LocalDate: CustomStringConvertible {
     public var description: String {
-        let s = String(format: "%04ld-%02ld-%02ld", abs(year), month, day)
-        return year < 0 ? "-" + s : s
+        return "\(year, width: 4)-\(month, width: 2)-\(day, width: 2)"
     }
 }
 
