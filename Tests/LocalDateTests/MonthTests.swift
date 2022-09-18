@@ -27,4 +27,22 @@ final class MonthTests: XCTestCase {
         XCTAssertEqual(month.addingMonth(-24).value, 1)
         XCTAssertEqual(month.addingMonth(-25).value, 12)
     }
+    
+    func test_lengthOfMonth() {
+        XCTAssertEqual(Month.lengthOfMonth(1, isLeapYear: false), 31)
+        XCTAssertEqual(Month.lengthOfMonth(2, isLeapYear: false), 28)
+        XCTAssertEqual(Month.lengthOfMonth(3, isLeapYear: false), 31)
+        XCTAssertEqual(Month.lengthOfMonth(4, isLeapYear: false), 30)
+        XCTAssertEqual(Month.lengthOfMonth(5, isLeapYear: false), 31)
+        XCTAssertEqual(Month.lengthOfMonth(6, isLeapYear: false), 30)
+        XCTAssertEqual(Month.lengthOfMonth(7, isLeapYear: false), 31)
+        XCTAssertEqual(Month.lengthOfMonth(8, isLeapYear: false), 31)
+        XCTAssertEqual(Month.lengthOfMonth(9, isLeapYear: false), 30)
+        XCTAssertEqual(Month.lengthOfMonth(10, isLeapYear: false), 31)
+        XCTAssertEqual(Month.lengthOfMonth(11, isLeapYear: false), 30)
+        XCTAssertEqual(Month.lengthOfMonth(12, isLeapYear: false), 31)
+        
+        // leap year
+        XCTAssertEqual(Month.lengthOfMonth(2, isLeapYear: true), 29)
+    }
 }

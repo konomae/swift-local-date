@@ -23,18 +23,7 @@ public struct YearMonth: Hashable {
     }
     
     public var endOfMonth: LocalDate {
-        LocalDate(year: year, month: month, day: length)
-    }
-    
-    private var length: Int {
-        switch month {
-        case 2:
-            return isLeapYear(year) ? 29 : 28
-        case 4, 6, 9, 11:
-            return 30
-        default:
-            return 31
-        }
+        LocalDate(year: year, month: month, day: Month.lengthOfMonth(month, isLeapYear: isLeapYear(year)))
     }
 }
 
