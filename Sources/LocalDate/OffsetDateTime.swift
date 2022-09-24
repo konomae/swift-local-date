@@ -44,6 +44,34 @@ public struct OffsetDateTime: Hashable {
             second: dateTime.time.second
         )
     }
+    
+    public var year: Int {
+        dateTime.date.year
+    }
+    
+    public var month: Int {
+        dateTime.date.month
+    }
+    
+    public var day: Int {
+        dateTime.date.day
+    }
+    
+    public var hour: Int {
+        dateTime.time.hour
+    }
+    
+    public var minute: Int {
+        dateTime.time.minute
+    }
+    
+    public var second: Int {
+        dateTime.time.second
+    }
+    
+    public var nanosecond: Int {
+        dateTime.time.nanosecond
+    }
 }
 
 extension OffsetDateTime: CustomStringConvertible {

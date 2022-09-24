@@ -26,6 +26,34 @@ public struct LocalDateTime: Hashable {
         
         self.init(date: date, time: time)
     }
+    
+    public var year: Int {
+        date.year
+    }
+    
+    public var month: Int {
+        date.month
+    }
+    
+    public var day: Int {
+        date.day
+    }
+    
+    public var hour: Int {
+        time.hour
+    }
+    
+    public var minute: Int {
+        time.minute
+    }
+    
+    public var second: Int {
+        time.second
+    }
+    
+    public var nanosecond: Int {
+        time.nanosecond
+    }
 }
 
 extension LocalDateTime: CustomStringConvertible {

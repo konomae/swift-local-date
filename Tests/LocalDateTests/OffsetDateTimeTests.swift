@@ -23,6 +23,14 @@ final class OffsetDateTimeTests: XCTestCase {
             dateTime,
             OffsetDateTime(year: 1970, month: 12, day: 31, hour: 1, minute: 2, second: 3, nanosecond: 4, offset: ZoneOffset(second: 3600))
         )
+        
+        XCTAssertEqual(dateTime.year, 1970)
+        XCTAssertEqual(dateTime.month, 12)
+        XCTAssertEqual(dateTime.day, 31)
+        XCTAssertEqual(dateTime.hour, 1)
+        XCTAssertEqual(dateTime.minute, 2)
+        XCTAssertEqual(dateTime.second, 3)
+        XCTAssertEqual(dateTime.nanosecond, 4)
     }
     
     func test_init_from_string() throws {
