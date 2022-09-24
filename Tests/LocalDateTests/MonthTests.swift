@@ -2,6 +2,13 @@ import XCTest
 @testable import LocalDate
 
 final class MonthTests: XCTestCase {
+    func test_init() {
+        XCTAssertNil(Month.init(0))
+        XCTAssertEqual(Month.init(1)?.value, 1)
+        XCTAssertEqual(Month.init(12)?.value, 12)
+        XCTAssertNil(Month.init(13))
+    }
+    
     func test_addingMonth() {
         let month: Month = 1
         XCTAssertEqual(month.addingMonth(1).value, 2)
