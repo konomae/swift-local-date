@@ -12,7 +12,7 @@ public struct LocalDate: Hashable {
     }
     
     public init(from date: Date = .init(), in timeZone: TimeZone = .current) {
-        let components = Calendar(identifier: .gregorian).dateComponents(in: timeZone, from: date)
+        let components = Calendar.gregorian.dateComponents(in: timeZone, from: date)
         self.init(year: components.year!, month: components.month!, day: components.day!)
     }
     
@@ -35,7 +35,7 @@ public struct LocalDate: Hashable {
     
     public func date(in timeZone: TimeZone) -> Date {
         let components = DateComponents(
-            calendar: Calendar(identifier: .gregorian),
+            calendar: Calendar.gregorian,
             timeZone: timeZone,
             year: year,
             month: month,

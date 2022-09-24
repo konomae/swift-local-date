@@ -34,7 +34,7 @@ public struct OffsetDateTime: Hashable {
     
     var dateComponentsWithoutNanosecond: DateComponents {
         DateComponents(
-            calendar: Calendar(identifier: .gregorian),
+            calendar: .gregorian,
             timeZone: TimeZone(secondsFromGMT: offset.second),
             year: dateTime.date.year,
             month: dateTime.date.month,

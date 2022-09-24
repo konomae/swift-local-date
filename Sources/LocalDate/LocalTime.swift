@@ -14,7 +14,7 @@ public struct LocalTime: Hashable {
     }
     
     public init(from date: Date = .init(), in timeZone: TimeZone = .current) {
-        let components = Calendar(identifier: .gregorian).dateComponents(in: timeZone, from: date)
+        let components = Calendar.gregorian.dateComponents(in: timeZone, from: date)
         self.init(hour: components.hour!, minute: components.minute!, second: components.second!, nanosecond: components.nanosecond!)
     }
     
