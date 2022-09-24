@@ -26,3 +26,9 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral {
         }
     }
 }
+
+extension Month: Comparable {
+    public static func < (lhs: Month, rhs: Month) -> Bool {
+        lhs.value < rhs.value
+    }
+}

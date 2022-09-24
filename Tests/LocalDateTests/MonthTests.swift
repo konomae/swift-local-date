@@ -52,4 +52,8 @@ final class MonthTests: XCTestCase {
         // leap year
         XCTAssertEqual(Month.lengthOfMonth(2, isLeapYear: true), 29)
     }
+    
+    func test_comparable() {
+        XCTAssertLessThan(Month(1), Month(2))
+    }
 }
