@@ -9,6 +9,14 @@ final class MonthTests: XCTestCase {
         XCTAssertNil(Month.init(13))
     }
     
+    func test_init_text() {
+        XCTAssertNil(Month("0"))
+        XCTAssertEqual(Month("1"), Month(1))
+        XCTAssertEqual(Month("12"), Month(12))
+        XCTAssertNil(Month("13"))
+        XCTAssertNil(Month(""))
+    }
+    
     func test_addingMonth() {
         let month: Month = 1
         XCTAssertEqual(month.addingMonth(1).value, 2)
@@ -51,6 +59,11 @@ final class MonthTests: XCTestCase {
         
         // leap year
         XCTAssertEqual(Month.lengthOfMonth(2, isLeapYear: true), 29)
+    }
+    
+    func test_description() {
+        XCTAssertEqual(String(describing: Month(1)), "1")
+        XCTAssertEqual(String(describing: Month(12)), "12")
     }
     
     func test_comparable() {

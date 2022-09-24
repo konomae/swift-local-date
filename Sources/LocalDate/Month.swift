@@ -1,4 +1,4 @@
-public struct Month: Hashable, ExpressibleByIntegerLiteral {
+public struct Month: Hashable, ExpressibleByIntegerLiteral, LosslessStringConvertible {
     public let value: UInt8
     
     public init(integerLiteral value: UInt8) {
@@ -8,6 +8,11 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral {
     public init?(_ value: UInt8) {
         guard (1...12).contains(value) else { return nil }
         self.value = value
+    }
+    
+    public init?<S: StringProtocol>(_ text: S) {
+        guard let value = UInt8(text) else { return nil }
+        self.init(value)
     }
     
     public func addingMonth(_ month: Int) -> Month {
@@ -24,6 +29,12 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral {
         default:
             return 31
         }
+    }
+}
+
+extension Month: CustomStringConvertible {
+    public var description: String {
+        value.description
     }
 }
 
