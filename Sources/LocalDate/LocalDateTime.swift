@@ -14,15 +14,15 @@ public struct LocalDateTime: Hashable {
         self.time = time
     }
     
-    public init(from string: String) throws {
-        let string = string.utf8
+    public init<S: StringProtocol>(from string: S) throws {
+        let string = Substring(string).utf8
         
         guard let index = string.firstIndex(of: .init(ascii: "T")) else {
             throw Error.invalidStringFormat
         }
         
-        let date = try LocalDate(from: String(string[..<index])!)
-        let time = try LocalTime(from: String(string[string.index(after: index)...])!)
+        let date = try LocalDate(from: Substring(string[..<index]))
+        let time = try LocalTime(from: Substring(string[string.index(after: index)...]))
         
         self.init(date: date, time: time)
     }

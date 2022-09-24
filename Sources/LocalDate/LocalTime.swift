@@ -18,8 +18,8 @@ public struct LocalTime: Hashable {
         self.init(hour: components.hour!, minute: components.minute!, second: components.second!, nanosecond: components.nanosecond!)
     }
     
-    public init(from string: String) throws {
-        var string = string.utf8[...]
+    public init<S: StringProtocol>(from string: S) throws {
+        var string = Substring(string).utf8
         
         let nanosecond: Int
         if let index = string.lastIndex(of: .init(ascii: ".")) {

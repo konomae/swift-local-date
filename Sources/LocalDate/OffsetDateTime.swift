@@ -19,16 +19,16 @@ public struct OffsetDateTime: Hashable {
         self.offset = offset
     }
     
-    public init(from string: String) throws {
-        let string = string.utf8
+    public init<S: StringProtocol>(from string: S) throws {
+        let string = Substring(string).utf8
         
         guard let index = string.lastIndex(where: { $0 == .init(ascii: "Z") || $0 == .init(ascii: "+") || $0 == .init(ascii: "-") }) else {
             throw Error.invalidStringFormat
         }
 
         self.init(
-            dateTime: try LocalDateTime(from: String(string[..<index])!),
-            offset: try ZoneOffset(from: String(string[index...])!)
+            dateTime: try LocalDateTime(from: Substring(string[..<index])),
+            offset: try ZoneOffset(from: Substring(string[index...]))
         )
     }
     

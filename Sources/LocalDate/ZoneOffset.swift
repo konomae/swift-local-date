@@ -5,7 +5,7 @@ public struct ZoneOffset: Hashable {
         self.second = second
     }
     
-    public init(from string: String) throws {
+    public init<S: StringProtocol>(from string: S) throws {
         self.init(second: try parse(string))
     }
 }
@@ -67,7 +67,7 @@ public extension ZoneOffset {
     }
 }
 
-private func parse(_ string: String) throws -> Int {
+private func parse<S: StringProtocol>(_ string: S) throws -> Int {
     if string.isEmpty {
         throw ZoneOffset.Error.invalidStringFormat
     }
