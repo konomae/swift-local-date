@@ -59,19 +59,19 @@ final class OffsetDateTimeTests: XCTestCase {
     
     func test_init_from_string_error() throws {
         XCTAssertThrowsError(try OffsetDateTime(from: "")) {
-            XCTAssertEqual($0 as? OffsetDateTime.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try OffsetDateTime(from: "1970-12-31")) {
-            XCTAssertEqual($0 as? LocalDateTime.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try OffsetDateTime(from: "01:02:03.4")) {
-            XCTAssertEqual($0 as? OffsetDateTime.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try OffsetDateTime(from: "+02:30")) {
-            XCTAssertEqual($0 as? LocalDateTime.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
     }
     
@@ -126,7 +126,7 @@ final class OffsetDateTimeTests: XCTestCase {
             if case let .dataCorrupted(context) = $0 as? DecodingError {
                 XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
                 XCTAssertEqual(context.debugDescription, "invalid format")
-                XCTAssertEqual(context.underlyingError as? OffsetDateTime.Error, .invalidStringFormat)
+                XCTAssertEqual(context.underlyingError as? FormatError, FormatError())
             } else {
                 XCTFail()
             }

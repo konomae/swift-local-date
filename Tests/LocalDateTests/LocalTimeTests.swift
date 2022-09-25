@@ -39,10 +39,10 @@ final class LocalTimeTests: XCTestCase {
     
     func test_init_from_string_error() throws {
         XCTAssertThrowsError(try LocalTime(from: "00:00:00.")) {
-            XCTAssertEqual($0 as? LocalTime.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         XCTAssertThrowsError(try LocalTime(from: "235959")) {
-            XCTAssertEqual($0 as? LocalTime.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
     }
     
@@ -81,7 +81,7 @@ final class LocalTimeTests: XCTestCase {
             if case let .dataCorrupted(context) = $0 as? DecodingError {
                 XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
                 XCTAssertEqual(context.debugDescription, "invalid format")
-                XCTAssertEqual(context.underlyingError as? LocalTime.Error, .invalidStringFormat)
+                XCTAssertEqual(context.underlyingError as? FormatError, FormatError())
             } else {
                 XCTFail()
             }

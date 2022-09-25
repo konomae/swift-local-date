@@ -18,7 +18,7 @@ public struct LocalDateTime: Hashable {
         let string = Substring(string).utf8
         
         guard let index = string.firstIndex(of: .init(ascii: "T")) else {
-            throw Error.invalidStringFormat
+            throw FormatError()
         }
         
         let date = try LocalDate(from: Substring(string[..<index]))
@@ -95,11 +95,5 @@ extension LocalDateTime: Codable {
 extension LocalDateTime: Comparable {
     public static func < (lhs: LocalDateTime, rhs: LocalDateTime) -> Bool {
         (lhs.date, lhs.time) < (rhs.date, rhs.time)
-    }
-}
-
-public extension LocalDateTime {
-    enum Error: Swift.Error, Equatable {
-        case invalidStringFormat
     }
 }

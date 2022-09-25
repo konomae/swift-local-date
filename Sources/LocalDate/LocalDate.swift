@@ -27,7 +27,7 @@ public struct LocalDate: Hashable {
             let month = Int(Substring(string[string.index(after: i1)..<i2])),
             let day = Int(Substring(string[string.index(after: i2)...]))
         else {
-            throw Error.invalidStringFormat
+            throw FormatError()
         }
         
         self.init(year: year, month: month, day: day)
@@ -85,11 +85,5 @@ extension LocalDate: Codable {
 extension LocalDate: Comparable {
     public static func < (lhs: LocalDate, rhs: LocalDate) -> Bool {
         (lhs.year, lhs.month, lhs.day) < (rhs.year, rhs.month, rhs.day)
-    }
-}
-
-public extension LocalDate {
-    enum Error: Swift.Error, Equatable {
-        case invalidStringFormat
     }
 }

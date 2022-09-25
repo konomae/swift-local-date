@@ -15,16 +15,16 @@ final class ZoneOffsetTests: XCTestCase {
 
     func test_init_from_string_error() throws {
         XCTAssertThrowsError(try ZoneOffset(from: "+")) {
-            XCTAssertEqual($0 as? ZoneOffset.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         XCTAssertThrowsError(try ZoneOffset(from: "-")) {
-            XCTAssertEqual($0 as? ZoneOffset.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         XCTAssertThrowsError(try ZoneOffset(from: "Z1")) {
-            XCTAssertEqual($0 as? ZoneOffset.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         XCTAssertThrowsError(try ZoneOffset(from: "")) {
-            XCTAssertEqual($0 as? ZoneOffset.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
     }
     
@@ -60,7 +60,7 @@ final class ZoneOffsetTests: XCTestCase {
             if case let .dataCorrupted(context) = $0 as? DecodingError {
                 XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
                 XCTAssertEqual(context.debugDescription, "invalid format")
-                XCTAssertEqual(context.underlyingError as? ZoneOffset.Error, .invalidStringFormat)
+                XCTAssertEqual(context.underlyingError as? FormatError, FormatError())
             } else {
                 XCTFail()
             }

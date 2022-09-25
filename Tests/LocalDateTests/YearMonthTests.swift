@@ -15,27 +15,27 @@ final class YearMonthTests: XCTestCase {
     
     func test_init_from_string_error() {
         XCTAssertThrowsError(try YearMonth(from: "")) {
-            XCTAssertEqual($0 as? YearMonth.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try YearMonth(from: "-")) {
-            XCTAssertEqual($0 as? YearMonth.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try YearMonth(from: "1970-10-")) {
-            XCTAssertEqual($0 as? YearMonth.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try YearMonth(from: "-0001-10-")) {
-            XCTAssertEqual($0 as? YearMonth.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try YearMonth(from: "1970/01")) {
-            XCTAssertEqual($0 as? YearMonth.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try YearMonth(from: "197001")) {
-            XCTAssertEqual($0 as? YearMonth.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
     }
     
@@ -71,7 +71,7 @@ final class YearMonthTests: XCTestCase {
             if case let .dataCorrupted(context) = $0 as? DecodingError {
                 XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
                 XCTAssertEqual(context.debugDescription, "invalid format")
-                XCTAssertEqual(context.underlyingError as? YearMonth.Error, .invalidStringFormat)
+                XCTAssertEqual(context.underlyingError as? FormatError, FormatError())
             } else {
                 XCTFail()
             }

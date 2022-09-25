@@ -16,7 +16,7 @@ public struct YearMonth: Hashable {
             let year = Int(Substring(string[..<i1])),
             let month = Int(Substring(string[string.index(after: i1)...]))
         else {
-            throw Error.invalidStringFormat
+            throw FormatError()
         }
         
         self.init(year: year, month: month)
@@ -66,11 +66,5 @@ extension YearMonth: Codable {
 extension YearMonth: Comparable {
     public static func < (lhs: YearMonth, rhs: YearMonth) -> Bool {
         (lhs.year, lhs.month) < (rhs.year, rhs.month)
-    }
-}
-
-public extension YearMonth {
-    enum Error: Swift.Error, Equatable {
-        case invalidStringFormat
     }
 }

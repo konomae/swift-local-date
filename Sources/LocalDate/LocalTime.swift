@@ -25,7 +25,7 @@ public struct LocalTime: Hashable {
         if let index = string.lastIndex(of: .init(ascii: ".")) {
             let secfrac = string[string.index(after: index)...]
             guard let n = Int(Substring(secfrac)) else {
-                throw Error.invalidStringFormat
+                throw FormatError()
             }
             nanosecond = n * Int(pow(10, Double(9 - secfrac.count)))
             string = string[..<index]
@@ -40,7 +40,7 @@ public struct LocalTime: Hashable {
             let minute = Int(Substring(string[string.index(after: i1)..<i2])),
             let second = Int(Substring(string[string.index(after: i2)...]))
         else {
-            throw Error.invalidStringFormat
+            throw FormatError()
         }
         
         self.init(hour: hour, minute: minute, second: second, nanosecond: nanosecond)
@@ -93,11 +93,5 @@ extension LocalTime: Codable {
 extension LocalTime: Comparable {
     public static func < (lhs: LocalTime, rhs: LocalTime) -> Bool {
         (lhs.hour, lhs.minute, lhs.second, lhs.nanosecond) < (rhs.hour, rhs.minute, rhs.second, rhs.nanosecond)
-    }
-}
-
-public extension LocalTime {
-    enum Error: Swift.Error, Equatable {
-        case invalidStringFormat
     }
 }

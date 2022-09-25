@@ -23,7 +23,7 @@ public struct OffsetDateTime: Hashable {
         let string = Substring(string).utf8
         
         guard let index = string.lastIndex(where: { $0 == .init(ascii: "Z") || $0 == .init(ascii: "+") || $0 == .init(ascii: "-") }) else {
-            throw Error.invalidStringFormat
+            throw FormatError()
         }
 
         self.init(
@@ -121,11 +121,5 @@ extension OffsetDateTime: Comparable {
         }
         
         return (leftDate, lhs.dateTime.time.nanosecond) < (rightDate, rhs.dateTime.time.nanosecond)
-    }
-}
-
-public extension OffsetDateTime {
-    enum Error: Swift.Error, Equatable {
-        case invalidStringFormat
     }
 }

@@ -61,15 +61,9 @@ extension ZoneOffset: Comparable {
     }
 }
 
-public extension ZoneOffset {
-    enum Error: Swift.Error, Equatable {
-        case invalidStringFormat
-    }
-}
-
 private func parse<S: StringProtocol>(_ string: S) throws -> Int {
     if string.isEmpty {
-        throw ZoneOffset.Error.invalidStringFormat
+        throw FormatError()
     }
     
     let string = Substring(string).utf8
@@ -82,7 +76,7 @@ private func parse<S: StringProtocol>(_ string: S) throws -> Int {
     case .init(ascii: "-"):
         sign = -1
     default:
-        throw ZoneOffset.Error.invalidStringFormat
+        throw FormatError()
     }
     
     guard
@@ -90,7 +84,7 @@ private func parse<S: StringProtocol>(_ string: S) throws -> Int {
         let hour = Int(Substring(string[string.index(after: string.startIndex)..<index])),
         let minute = Int(Substring(string[string.index(after: index)...]))
     else {
-        throw ZoneOffset.Error.invalidStringFormat
+        throw FormatError()
     }
     
     return sign * ((hour * 60 * 60) + (minute * 60))

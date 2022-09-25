@@ -29,43 +29,43 @@ final class LocalDateTests: XCTestCase {
     
     func test_init_from_string_error() {
         XCTAssertThrowsError(try LocalDate(from: "")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "-")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "-0001-10")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "1970-10")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "1970-10-")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "-0001-10-")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "1970/01/01")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "1970-01-01-")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "19700101")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
         
         XCTAssertThrowsError(try LocalDate(from: "1970-01-01T00:00:00+00:00")) {
-            XCTAssertEqual($0 as? LocalDate.Error, .invalidStringFormat)
+            XCTAssertEqual($0 as? FormatError, FormatError())
         }
     }
     
@@ -113,7 +113,7 @@ final class LocalDateTests: XCTestCase {
             if case let .dataCorrupted(context) = $0 as? DecodingError {
                 XCTAssertEqual(context.codingPath.map(\.stringValue), ["b", "value"])
                 XCTAssertEqual(context.debugDescription, "invalid format")
-                XCTAssertEqual(context.underlyingError as? LocalDate.Error, .invalidStringFormat)
+                XCTAssertEqual(context.underlyingError as? FormatError, FormatError())
             } else {
                 XCTFail()
             }
