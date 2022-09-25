@@ -7,6 +7,13 @@ final class ZoneOffsetTests: XCTestCase {
         XCTAssertEqual(offset.second, 1)
     }
     
+    func test_init_hour_minute() {
+        XCTAssertEqual(ZoneOffset(hour: 1).second, 3600)
+        XCTAssertEqual(ZoneOffset(hour: 2, minute: 30).second, 9000)
+        XCTAssertEqual(ZoneOffset(hour: -1).second, -3600)
+        XCTAssertEqual(ZoneOffset(hour: -2, minute: -30).second, -9000)
+    }
+    
     func test_init_from_string() throws {
         XCTAssertEqual(try ZoneOffset(from: "+02:30"), ZoneOffset(second: 9000))
         XCTAssertEqual(try ZoneOffset(from: "-02:30"), ZoneOffset(second: -9000))

@@ -5,6 +5,10 @@ public struct ZoneOffset: Hashable {
         self.second = second
     }
     
+    public init(hour: Int, minute: Int = 0) {
+        self.init(second: (hour * 60 * 60) + (minute * 60))
+    }
+    
     public init<S: StringProtocol>(from string: S) throws {
         self.init(second: try parse(string))
     }
