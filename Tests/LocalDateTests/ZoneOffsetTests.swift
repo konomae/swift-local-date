@@ -14,6 +14,11 @@ final class ZoneOffsetTests: XCTestCase {
         XCTAssertEqual(ZoneOffset(hour: -2, minute: -30).second, -9000)
     }
     
+    func test_init_from_timeZone() {
+        XCTAssertEqual(ZoneOffset(timeZone: TimeZone(secondsFromGMT: 3600)!), ZoneOffset(second: 3600))
+        XCTAssertEqual(ZoneOffset(timeZone: TimeZone(secondsFromGMT: -9000)!), ZoneOffset(second: -9000))
+    }
+    
     func test_init_from_string() throws {
         XCTAssertEqual(try ZoneOffset(from: "+02:30"), ZoneOffset(second: 9000))
         XCTAssertEqual(try ZoneOffset(from: "-02:30"), ZoneOffset(second: -9000))
@@ -86,5 +91,10 @@ final class ZoneOffsetTests: XCTestCase {
         XCTAssertLessThan(ZoneOffset(second: 3600), ZoneOffset(second: 0))
         // +00:00 < -01:00
         XCTAssertLessThan(ZoneOffset(second: 0), ZoneOffset(second: -3600))
+    }
+    
+    func test_timeZone() {
+        XCTAssertEqual(ZoneOffset(second: 3600).timeZone, TimeZone(secondsFromGMT: 3600))
+        XCTAssertEqual(ZoneOffset(second: -9000).timeZone, TimeZone(secondsFromGMT: -9000))
     }
 }

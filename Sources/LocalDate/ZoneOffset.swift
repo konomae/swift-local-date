@@ -1,3 +1,5 @@
+import Foundation
+
 public struct ZoneOffset: Hashable {
     public var second: Int
     
@@ -9,8 +11,16 @@ public struct ZoneOffset: Hashable {
         self.init(second: (hour * 60 * 60) + (minute * 60))
     }
     
+    public init(timeZone: TimeZone) {
+        self.init(second: timeZone.secondsFromGMT())
+    }
+    
     public init<S: StringProtocol>(from string: S) throws {
         self.init(second: try parse(string))
+    }
+    
+    public var timeZone: TimeZone {
+        TimeZone(secondsFromGMT: second)!
     }
 }
 

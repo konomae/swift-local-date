@@ -29,7 +29,7 @@ public struct OffsetDateTime: Hashable {
             minute: components.minute!,
             second: components.second!,
             nanosecond: components.nanosecond!,
-            offset: ZoneOffset(second: timeZone.secondsFromGMT())
+            offset: ZoneOffset(timeZone: timeZone)
         )
     }
     
@@ -49,7 +49,7 @@ public struct OffsetDateTime: Hashable {
     var dateComponentsWithoutNanosecond: DateComponents {
         DateComponents(
             calendar: .gregorian,
-            timeZone: TimeZone(secondsFromGMT: offset.second),
+            timeZone: offset.timeZone,
             year: dateTime.date.year,
             month: dateTime.date.month,
             day: dateTime.date.day,
