@@ -55,8 +55,8 @@ extension LocalTime: CustomStringConvertible {
             return s
         }
         
-        let n = "\(nanosecond, width: 9)"
-        return s + "." + n.prefix(through: n.lastIndex { $0 != "0" }!)
+        let n = "\(nanosecond, width: 9)".utf8
+        return s + "." + String(n.prefix(through: n.lastIndex { $0 != .init(ascii: "0") }!))!
     }
 }
 
