@@ -33,6 +33,18 @@ final class OffsetDateTimeTests: XCTestCase {
         XCTAssertEqual(dateTime.nanosecond, 4)
     }
     
+    func test_init_from_date_in_timeZone() {
+        XCTAssertEqual(
+            OffsetDateTime(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!),
+            OffsetDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0, offset: ZoneOffset(second: 0))
+        )
+        
+        XCTAssertEqual(
+            OffsetDateTime(from: Date(timeIntervalSince1970: 3599), in: TimeZone(secondsFromGMT: -3600)!),
+            OffsetDateTime(year: 1969, month: 12, day: 31, hour: 23, minute: 59, second: 59, nanosecond: 0, offset: ZoneOffset(second: -3600))
+        )
+    }
+    
     func test_init_from_string() throws {
         XCTAssertEqual(
             try OffsetDateTime(from: "1970-12-31T01:02:03.4+02:30"),

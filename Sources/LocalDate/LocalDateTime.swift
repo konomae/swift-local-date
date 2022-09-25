@@ -1,3 +1,5 @@
+import Foundation
+
 public struct LocalDateTime: Hashable {
     public var date: LocalDate
     public var time: LocalTime
@@ -12,6 +14,19 @@ public struct LocalDateTime: Hashable {
     public init(date: LocalDate, time: LocalTime) {
         self.date = date
         self.time = time
+    }
+    
+    public init(from date: Date = .init(), in timeZone: TimeZone = .current) {
+        let components = Calendar.gregorian.dateComponents(in: timeZone, from: date)
+        self.init(
+            year: components.year!,
+            month: components.month!,
+            day: components.day!,
+            hour: components.hour!,
+            minute: components.minute!,
+            second: components.second!,
+            nanosecond: components.nanosecond!
+        )
     }
     
     public init<S: StringProtocol>(from string: S) throws {

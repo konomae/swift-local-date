@@ -1,3 +1,5 @@
+import Foundation
+
 public struct YearMonth: Hashable {
     public var year: Int
     public var month: Int
@@ -5,6 +7,11 @@ public struct YearMonth: Hashable {
     public init(year: Int, month: Int) {
         self.year = year
         self.month = month
+    }
+    
+    public init(from date: Date = .init(), in timeZone: TimeZone = .current) {
+        let components = Calendar.gregorian.dateComponents(in: timeZone, from: date)
+        self.init(year: components.year!, month: components.month!)
     }
     
     public init<S: StringProtocol>(from string: S) throws {

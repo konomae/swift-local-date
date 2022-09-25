@@ -8,6 +8,18 @@ final class YearMonthTests: XCTestCase {
         XCTAssertEqual(date.month, 1)
     }
     
+    func test_init_from_date_in_timeZone() {
+        XCTAssertEqual(
+            YearMonth(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!),
+            YearMonth(year: 1970, month: 1)
+        )
+        
+        XCTAssertEqual(
+            YearMonth(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: -3600)!),
+            YearMonth(year: 1969, month: 12)
+        )
+    }
+    
     func test_init_from_string() throws {
         XCTAssertEqual(try YearMonth(from: "1970-12"), YearMonth(year: 1970, month: 12))
         XCTAssertEqual(try YearMonth(from: "-0001-01"), YearMonth(year: -1, month: 1))

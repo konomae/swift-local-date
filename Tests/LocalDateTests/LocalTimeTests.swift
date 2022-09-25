@@ -17,11 +17,6 @@ final class LocalTimeTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            LocalTime(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!),
-            LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 0)
-        )
-        
-        XCTAssertEqual(
             LocalTime(from: Date(timeIntervalSince1970: 3599), in: TimeZone(secondsFromGMT: -3600)!),
             LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 0)
         )

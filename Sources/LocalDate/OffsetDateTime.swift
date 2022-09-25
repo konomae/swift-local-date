@@ -19,6 +19,20 @@ public struct OffsetDateTime: Hashable {
         self.offset = offset
     }
     
+    public init(from date: Date = .init(), in timeZone: TimeZone = .current) {
+        let components = Calendar.gregorian.dateComponents(in: timeZone, from: date)
+        self.init(
+            year: components.year!,
+            month: components.month!,
+            day: components.day!,
+            hour: components.hour!,
+            minute: components.minute!,
+            second: components.second!,
+            nanosecond: components.nanosecond!,
+            offset: ZoneOffset(second: timeZone.secondsFromGMT())
+        )
+    }
+    
     public init<S: StringProtocol>(from string: S) throws {
         let string = Substring(string).utf8
         
