@@ -35,7 +35,7 @@ public struct LocalDate: Hashable {
     
     public func date(in timeZone: TimeZone) -> Date {
         let components = DateComponents(
-            calendar: Calendar.gregorian,
+            calendar: .gregorian,
             timeZone: timeZone,
             year: year,
             month: month,
