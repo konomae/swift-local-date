@@ -25,6 +25,10 @@ public struct YearMonth: Hashable {
     public var endOfMonth: LocalDate {
         LocalDate(year: year, month: month, day: Month.lengthOfMonth(month, isLeapYear: isLeapYear(year)))
     }
+    
+    public func atDay(_ day: Int) -> LocalDate {
+        LocalDate(year: year, month: month, day: day)
+    }
 }
 
 extension YearMonth: CustomStringConvertible {

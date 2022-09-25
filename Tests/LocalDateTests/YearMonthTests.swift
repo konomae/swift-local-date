@@ -114,4 +114,8 @@ final class YearMonthTests: XCTestCase {
         // leap year
         XCTAssertEqual(YearMonth(year: 2000, month: 2).endOfMonth, LocalDate(year: 2000, month: 2, day: 29))
     }
+    
+    func test_atDay() {
+        XCTAssertEqual(YearMonth(year: 2000, month: 1).atDay(1), LocalDate(year: 2000, month: 1, day: 1))
+    }
 }
