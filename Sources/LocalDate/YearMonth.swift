@@ -7,8 +7,8 @@ public struct YearMonth: Hashable {
         self.month = month
     }
     
-    public init(from string: String) throws {
-        let string = string.utf8
+    public init<S: StringProtocol>(from string: S) throws {
+        let string = Substring(string).utf8
         let hasSign = string.first == .init(ascii: "-")
         
         guard
