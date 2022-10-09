@@ -27,6 +27,7 @@ final class LocalTimeTests: XCTestCase {
         XCTAssertEqual(try LocalTime(from: "23:59:59"), LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 0))
         
         XCTAssertEqual(try LocalTime(from: "00:00:00.0"), LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 0))
+        XCTAssertEqual(try LocalTime(from: "23:59:59.999"), LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 999000000))
         XCTAssertEqual(try LocalTime(from: "23:59:59.999999999"), LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 999999999))
         XCTAssertEqual(try LocalTime(from: "23:59:59.000000001"), LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 1))
         XCTAssertEqual(try LocalTime(from: "23:59:59.1"), LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 100000000))
