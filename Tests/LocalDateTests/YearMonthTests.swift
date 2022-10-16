@@ -130,4 +130,18 @@ final class YearMonthTests: XCTestCase {
     func test_atDay() {
         XCTAssertEqual(YearMonth(year: 2000, month: 1).atDay(1), LocalDate(year: 2000, month: 1, day: 1))
     }
+    
+    func test_addingMonths() {
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(0), YearMonth(year: 0, month: 1))
+        
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(1), YearMonth(year: 0, month: 2))
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(2), YearMonth(year: 0, month: 3))
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(12), YearMonth(year: 1, month: 1))
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(13), YearMonth(year: 1, month: 2))
+        
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(-1), YearMonth(year: -1, month: 12))
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(-2), YearMonth(year: -1, month: 11))
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(-12), YearMonth(year: -1, month: 1))
+        XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(-13), YearMonth(year: -2, month: 12))
+    }
 }

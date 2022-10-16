@@ -36,6 +36,15 @@ public struct YearMonth: Hashable {
     public func atDay(_ day: Int) -> LocalDate {
         LocalDate(year: year, month: month, day: day)
     }
+    
+    public func addingMonths(_ months: Int) -> Self {
+        let (q, r) = ((year * 12) + month + months).quotientAndRemainder(dividingBy: 12)
+        
+        return Self(
+            year: r <= 0 ? q - 1 : q,
+            month: r <= 0 ? 12 + r : r
+        )
+    }
 }
 
 extension YearMonth: CustomStringConvertible {
