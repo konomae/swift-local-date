@@ -1,6 +1,8 @@
 import Foundation
 
 public struct LocalTime: Hashable {
+    public static let midnight: Self = .init(hour: 0, minute: 0, second: 0, nanosecond: 0)
+    
     public var hour: Int
     public var minute: Int
     public var second: Int
