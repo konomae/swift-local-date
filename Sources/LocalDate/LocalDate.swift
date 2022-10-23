@@ -44,6 +44,10 @@ public struct LocalDate: Hashable {
         
         return components.date!
     }
+    
+    public func atTime(_ time: LocalTime) -> LocalDateTime {
+        .init(date: self, time: time)
+    }
 }
 
 extension LocalDate: CustomStringConvertible {

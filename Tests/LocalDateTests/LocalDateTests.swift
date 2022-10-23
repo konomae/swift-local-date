@@ -143,4 +143,11 @@ final class LocalDateTests: XCTestCase {
             LocalDate(year: 1970, month: 1, day: 2)
         )
     }
+    
+    func test_atTime() {
+        XCTAssertEqual(
+            LocalDate(year: 1970, month: 1, day: 2).atTime(.init(hour: 3, minute: 4, second: 5, nanosecond: 6)),
+            LocalDateTime(year: 1970, month: 1, day: 2, hour: 3, minute: 4, second: 5, nanosecond: 6)
+        )
+    }
 }
