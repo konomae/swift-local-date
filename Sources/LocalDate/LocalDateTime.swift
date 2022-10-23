@@ -69,6 +69,10 @@ public struct LocalDateTime: Hashable {
     public var nanosecond: Int {
         time.nanosecond
     }
+    
+    public func atOffset(_ offset: ZoneOffset) -> OffsetDateTime {
+        .init(dateTime: self, offset: offset)
+    }
 }
 
 extension LocalDateTime: CustomStringConvertible {
