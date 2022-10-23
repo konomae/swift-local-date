@@ -1,6 +1,8 @@
 import Foundation
 
 public struct ZoneOffset: Hashable {
+    public static let utc: Self = .init(second: 0)
+    
     public var second: Int
     
     public init(second: Int) {
