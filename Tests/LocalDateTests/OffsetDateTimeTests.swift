@@ -177,4 +177,26 @@ final class OffsetDateTimeTests: XCTestCase {
             try OffsetDateTime(from: "1970-01-01T00:00:00.000000002+00:00")
         )
     }
+    
+    func test_date() throws {
+        XCTAssertEqual(
+            OffsetDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0, offset: .utc).date,
+            Date(timeIntervalSince1970: 0)
+        )
+        
+        XCTAssertEqual(
+            OffsetDateTime(year: 1969, month: 12, day: 31, hour: 23, minute: 59, second: 59, nanosecond: 0, offset: .utc).date,
+            Date(timeIntervalSince1970: -1)
+        )
+        
+        XCTAssertEqual(
+            OffsetDateTime(year: 1970, month: 1, day: 1, hour: 1, minute: 29, second: 59, nanosecond: 0, offset: .init(second: 5400)).date,
+            Date(timeIntervalSince1970: -1)
+        )
+        
+        XCTAssertEqual(
+            OffsetDateTime(year: 1969, month: 12, day: 31, hour: 22, minute: 29, second: 59, nanosecond: 0, offset: .init(second: -5400)).date,
+            Date(timeIntervalSince1970: -1)
+        )
+    }
 }

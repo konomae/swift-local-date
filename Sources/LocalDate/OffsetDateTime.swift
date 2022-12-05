@@ -46,6 +46,24 @@ public struct OffsetDateTime: Hashable {
         )
     }
     
+    public var date: Date {
+        dateComponents.date!
+    }
+    
+    var dateComponents: DateComponents {
+        DateComponents(
+            calendar: .gregorian,
+            timeZone: offset.timeZone,
+            year: dateTime.date.year,
+            month: dateTime.date.month,
+            day: dateTime.date.day,
+            hour: dateTime.time.hour,
+            minute: dateTime.time.minute,
+            second: dateTime.time.second,
+            nanosecond: dateTime.time.nanosecond
+        )
+    }
+    
     var dateComponentsWithoutNanosecond: DateComponents {
         DateComponents(
             calendar: .gregorian,
