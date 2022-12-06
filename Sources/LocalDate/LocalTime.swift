@@ -8,7 +8,7 @@ public struct LocalTime: Hashable {
     public var second: Int
     public var nanosecond: Int
     
-    public init(hour: Int, minute: Int, second: Int, nanosecond: Int) {
+    public init(hour: Int, minute: Int, second: Int, nanosecond: Int = 0) {
         self.hour = hour
         self.minute = minute
         self.second = second

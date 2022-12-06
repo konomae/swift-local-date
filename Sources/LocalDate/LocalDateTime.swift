@@ -4,7 +4,7 @@ public struct LocalDateTime: Hashable {
     public var date: LocalDate
     public var time: LocalTime
     
-    public init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int, nanosecond: Int) {
+    public init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int, nanosecond: Int = 0) {
         self.init(
             date: LocalDate(year: year, month: month, day: day),
             time: LocalTime(hour: hour, minute: minute, second: second, nanosecond: nanosecond)

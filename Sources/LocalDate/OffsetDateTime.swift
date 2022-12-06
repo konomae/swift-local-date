@@ -4,7 +4,7 @@ public struct OffsetDateTime: Hashable {
     public var dateTime: LocalDateTime
     public var offset: ZoneOffset
     
-    public init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int, nanosecond: Int, offset: ZoneOffset) {
+    public init(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int, nanosecond: Int = 0, offset: ZoneOffset) {
         self.init(
             dateTime: LocalDateTime(
                 date: LocalDate(year: year, month: month, day: day),
