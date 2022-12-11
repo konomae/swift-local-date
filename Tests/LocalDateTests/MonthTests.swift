@@ -7,6 +7,7 @@ final class MonthTests: XCTestCase {
         XCTAssertEqual(Month.init(1)?.value, 1)
         XCTAssertEqual(Month.init(12)?.value, 12)
         XCTAssertNil(Month.init(13))
+        XCTAssertNil(Month.init(-1))
     }
     
     func test_init_text() {

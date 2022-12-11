@@ -5,9 +5,9 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral, LosslessStringConver
         self.init(value)!
     }
     
-    public init?(_ value: UInt8) {
+    public init?<I: BinaryInteger>(_ value: I) {
         guard (1...12).contains(value) else { return nil }
-        self.value = value
+        self.value = UInt8(value)
     }
     
     public init?<S: StringProtocol>(_ text: S) {
