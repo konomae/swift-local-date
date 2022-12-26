@@ -1,5 +1,17 @@
-public struct Month: Hashable, ExpressibleByIntegerLiteral, LosslessStringConvertible {
-    public let value: UInt8
+@frozen
+public enum Month: UInt8, CaseIterable, ExpressibleByIntegerLiteral, LosslessStringConvertible {
+    case january = 1
+    case february
+    case march
+    case april
+    case may
+    case june
+    case july
+    case august
+    case september
+    case october
+    case november
+    case december
     
     public init(integerLiteral value: UInt8) {
         self.init(value)!
@@ -7,7 +19,7 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral, LosslessStringConver
     
     public init?<I: BinaryInteger>(_ value: I) {
         guard (1...12).contains(value) else { return nil }
-        self.value = UInt8(value)
+        self.init(rawValue: UInt8(value))
     }
     
     public init?<S: StringProtocol>(_ text: S) {
@@ -16,7 +28,7 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral, LosslessStringConver
     }
     
     public func addingMonth(_ month: Int) -> Month {
-        let remainder = (Int(value) + month) % 12
+        let remainder = (Int(rawValue) + month) % 12
         return Month(UInt8(remainder <= 0 ? 12 + remainder : remainder))!
     }
     
@@ -34,12 +46,12 @@ public struct Month: Hashable, ExpressibleByIntegerLiteral, LosslessStringConver
 
 extension Month: CustomStringConvertible {
     public var description: String {
-        value.description
+        rawValue.description
     }
 }
 
 extension Month: Comparable {
-    public static func < (lhs: Month, rhs: Month) -> Bool {
-        lhs.value < rhs.value
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue < rhs.rawValue
     }
 }
