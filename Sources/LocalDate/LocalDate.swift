@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LocalDate: Hashable {
+public struct LocalDate: Hashable, Sendable {
     public var year: Int
     public var month: Int
     public var day: Int

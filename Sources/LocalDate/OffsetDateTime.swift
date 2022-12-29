@@ -1,6 +1,6 @@
 import Foundation
 
-public struct OffsetDateTime: Hashable {
+public struct OffsetDateTime: Hashable, Sendable {
     public var dateTime: LocalDateTime
     public var offset: ZoneOffset
     

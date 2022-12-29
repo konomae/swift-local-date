@@ -1,5 +1,5 @@
 @frozen
-public enum Month: UInt8, CaseIterable {
+public enum Month: UInt8, CaseIterable, Sendable {
     case january = 1
     case february
     case march

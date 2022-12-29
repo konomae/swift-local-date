@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LocalDateTime: Hashable {
+public struct LocalDateTime: Hashable, Sendable {
     public var date: LocalDate
     public var time: LocalTime
     
