@@ -52,7 +52,7 @@ public struct LocalDate: Hashable {
 
 extension LocalDate: CustomStringConvertible {
     public var description: String {
-        return "\(year, width: 4)-\(month, width: 2)-\(day, width: 2)"
+        "\(year, width: 4)-\(month, width: 2)-\(day, width: 2)"
     }
 }
 

@@ -14,7 +14,9 @@ public enum Month: UInt8, CaseIterable {
     case december
     
     public init?<I: BinaryInteger>(_ value: I) {
-        guard (1...12).contains(value) else { return nil }
+        guard (1...12).contains(value) else {
+            return nil
+        }
         self.init(rawValue: UInt8(value))
     }
     
@@ -23,7 +25,7 @@ public enum Month: UInt8, CaseIterable {
         return Month(UInt8(remainder <= 0 ? 12 + remainder : remainder))!
     }
     
-    static func lengthOfMonth( _ month: Int, isLeapYear: Bool) -> Int {
+    static func lengthOfMonth(_ month: Int, isLeapYear: Bool) -> Int {
         switch month {
         case 2:
             return isLeapYear ? 29 : 28
@@ -55,7 +57,9 @@ extension Month: ExpressibleByIntegerLiteral {
 
 extension Month: LosslessStringConvertible {
     public init?<S: StringProtocol>(_ text: S) {
-        guard let value = UInt8(text) else { return nil }
+        guard let value = UInt8(text) else {
+            return nil
+        }
         self.init(value)
     }
 }

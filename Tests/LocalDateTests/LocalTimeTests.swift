@@ -1,5 +1,5 @@
-import XCTest
 @testable import LocalDate
+import XCTest
 
 final class LocalTimeTests: XCTestCase {
     func test_init() {
