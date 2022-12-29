@@ -8,10 +8,15 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Run tests
       run: swift test -v
+
+  benchmark:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run benchmark
+      run: swift run -c release swift-local-date-benchmark
