@@ -1,5 +1,5 @@
 @frozen
-public enum Month: UInt8, CaseIterable, ExpressibleByIntegerLiteral, LosslessStringConvertible {
+public enum Month: UInt8, CaseIterable {
     case january = 1
     case february
     case march
@@ -13,18 +13,9 @@ public enum Month: UInt8, CaseIterable, ExpressibleByIntegerLiteral, LosslessStr
     case november
     case december
     
-    public init(integerLiteral value: UInt8) {
-        self.init(value)!
-    }
-    
     public init?<I: BinaryInteger>(_ value: I) {
         guard (1...12).contains(value) else { return nil }
         self.init(rawValue: UInt8(value))
-    }
-    
-    public init?<S: StringProtocol>(_ text: S) {
-        guard let value = UInt8(text) else { return nil }
-        self.init(value)
     }
     
     public func addingMonth(_ month: Int) -> Month {
@@ -53,5 +44,18 @@ extension Month: CustomStringConvertible {
 extension Month: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.rawValue < rhs.rawValue
+    }
+}
+
+extension Month: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: UInt8) {
+        self.init(value)!
+    }
+}
+
+extension Month: LosslessStringConvertible {
+    public init?<S: StringProtocol>(_ text: S) {
+        guard let value = UInt8(text) else { return nil }
+        self.init(value)
     }
 }
