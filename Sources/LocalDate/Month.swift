@@ -13,7 +13,7 @@ public enum Month: UInt8, CaseIterable {
     case november
     case december
     
-    public init?<I: BinaryInteger>(_ value: I) {
+    public init?(_ value: some BinaryInteger) {
         guard (1...12).contains(value) else {
             return nil
         }
@@ -56,7 +56,7 @@ extension Month: ExpressibleByIntegerLiteral {
 }
 
 extension Month: LosslessStringConvertible {
-    public init?<S: StringProtocol>(_ text: S) {
+    public init?(_ text: some StringProtocol) {
         guard let value = UInt8(text) else {
             return nil
         }

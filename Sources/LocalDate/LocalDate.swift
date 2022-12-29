@@ -16,7 +16,7 @@ public struct LocalDate: Hashable {
         self.init(year: components.year!, month: components.month!, day: components.day!)
     }
     
-    public init<S: StringProtocol>(from string: S) throws {
+    public init(from string: some StringProtocol) throws {
         let string = Substring(string).utf8
         let hasSign = string.first == .init(ascii: "-")
         

@@ -29,7 +29,7 @@ public struct LocalDateTime: Hashable {
         )
     }
     
-    public init<S: StringProtocol>(from string: S) throws {
+    public init(from string: some StringProtocol) throws {
         let string = Substring(string).utf8
         
         guard let index = string.firstIndex(of: .init(ascii: "T")) else {

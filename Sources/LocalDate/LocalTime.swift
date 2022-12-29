@@ -20,7 +20,7 @@ public struct LocalTime: Hashable {
         self.init(hour: components.hour!, minute: components.minute!, second: components.second!, nanosecond: components.nanosecond!)
     }
     
-    public init<S: StringProtocol>(from string: S) throws {
+    public init(from string: some StringProtocol) throws {
         var string = Substring(string).utf8
         
         let nanosecond: Int

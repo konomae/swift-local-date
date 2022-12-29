@@ -33,7 +33,7 @@ public struct OffsetDateTime: Hashable {
         )
     }
     
-    public init<S: StringProtocol>(from string: S) throws {
+    public init(from string: some StringProtocol) throws {
         let string = Substring(string).utf8
         
         guard let index = string.lastIndex(where: { $0 == .init(ascii: "Z") || $0 == .init(ascii: "+") || $0 == .init(ascii: "-") }) else {
