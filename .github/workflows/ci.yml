@@ -12,7 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run tests
-      run: swift test -v
+      run: swift test --enable-code-coverage
+    - name: llvm-cov export
+      run: |
+        xcrun llvm-cov export \
+          .build/debug/swift-local-datePackageTests.xctest/Contents/MacOS/swift-local-datePackageTests \
+          -format=lcov \
+          -instr-profile .build/debug/codecov/default.profdata \
+          > .build/debug/codecov/info.lcov
+    - uses: codecov/codecov-action@v3
 
   benchmark:
     runs-on: macos-latest
