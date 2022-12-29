@@ -1,0 +1,12 @@
+--swiftversion 5.6
+--nospaceoperators ...,..<
+--ifdef no-indent
+--trimwhitespace nonblank-lines
+--stripunusedargs closure-only
+--hexliteralcase lowercase
+--binarygrouping none
+--decimalgrouping none
+--octalgrouping none
+--hexgrouping none
+--header strip
+--enable blankLineAfterImports,blankLinesBetweenImports,blockComments,docComments,isEmpty,wrapConditionalBodies
