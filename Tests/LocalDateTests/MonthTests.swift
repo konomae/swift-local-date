@@ -3,11 +3,18 @@ import XCTest
 
 final class MonthTests: XCTestCase {
     func test_init() {
-        XCTAssertNil(Month.init(0))
-        XCTAssertEqual(Month.init(1), 1)
-        XCTAssertEqual(Month.init(12), 12)
-        XCTAssertNil(Month.init(13))
-        XCTAssertNil(Month.init(-1))
+        XCTAssertNil(Month(0 as Int))
+        XCTAssertEqual(Month(1 as Int), 1)
+        XCTAssertEqual(Month(12 as Int), 12)
+        XCTAssertNil(Month(13 as Int))
+        XCTAssertNil(Month(-10 as Int))
+    }
+    
+    func test_init_integerLiteral() {
+        XCTAssertEqual(Month(1), 1)
+        XCTAssertEqual(Month(12), 12)
+        XCTAssertEqual(Month(integerLiteral: 1), 1)
+        XCTAssertEqual(Month(integerLiteral: 12), 12)
     }
     
     func test_init_text() {
