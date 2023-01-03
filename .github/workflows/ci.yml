@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, linux ]
   pull_request:
     branches: [ main ]
 
@@ -21,6 +21,18 @@ jobs:
           -instr-profile .build/debug/codecov/default.profdata \
           > .build/debug/codecov/info.lcov
     - uses: codecov/codecov-action@v3
+
+  linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        swift:
+          - 5.7
+    container: swift:${{ matrix.swift }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run tests
+        run: swift test
 
   benchmark:
     runs-on: macos-latest
