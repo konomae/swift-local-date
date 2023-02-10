@@ -144,4 +144,22 @@ final class YearMonthTests: XCTestCase {
         XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(-12), YearMonth(year: -1, month: 1))
         XCTAssertEqual(YearMonth(year: 0, month: 1).addingMonths(-13), YearMonth(year: -2, month: 12))
     }
+    
+    func test_lengthOfMonth() {
+        XCTAssertEqual(YearMonth(year: 1970, month: 1).lengthOfMonth, 31)
+        XCTAssertEqual(YearMonth(year: 1970, month: 2).lengthOfMonth, 28)
+        XCTAssertEqual(YearMonth(year: 1970, month: 3).lengthOfMonth, 31)
+        XCTAssertEqual(YearMonth(year: 1970, month: 4).lengthOfMonth, 30)
+        XCTAssertEqual(YearMonth(year: 1970, month: 5).lengthOfMonth, 31)
+        XCTAssertEqual(YearMonth(year: 1970, month: 6).lengthOfMonth, 30)
+        XCTAssertEqual(YearMonth(year: 1970, month: 7).lengthOfMonth, 31)
+        XCTAssertEqual(YearMonth(year: 1970, month: 8).lengthOfMonth, 31)
+        XCTAssertEqual(YearMonth(year: 1970, month: 9).lengthOfMonth, 30)
+        XCTAssertEqual(YearMonth(year: 1970, month: 10).lengthOfMonth, 31)
+        XCTAssertEqual(YearMonth(year: 1970, month: 11).lengthOfMonth, 30)
+        XCTAssertEqual(YearMonth(year: 1970, month: 12).lengthOfMonth, 31)
+        
+        // leap year
+        XCTAssertEqual(YearMonth(year: 2000, month: 2).lengthOfMonth, 29)
+    }
 }

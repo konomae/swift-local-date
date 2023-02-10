@@ -45,6 +45,10 @@ public struct YearMonth: Hashable, Sendable {
             month: r <= 0 ? 12 + r : r
         )
     }
+    
+    public var lengthOfMonth: Int {
+        Month.lengthOfMonth(month, isLeapYear: isLeapYear(year))
+    }
 }
 
 extension YearMonth: CustomStringConvertible {
