@@ -150,4 +150,24 @@ final class LocalDateTests: XCTestCase {
             LocalDateTime(year: 1970, month: 1, day: 2, hour: 3, minute: 4, second: 5, nanosecond: 6)
         )
     }
+    
+    func test_addingMonths() {
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(0), LocalDate(year: 0, month: 1, day: 1))
+        
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(1), LocalDate(year: 0, month: 2, day: 1))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(2), LocalDate(year: 0, month: 3, day: 1))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(12), LocalDate(year: 1, month: 1, day: 1))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(13), LocalDate(year: 1, month: 2, day: 1))
+        
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(-1), LocalDate(year: -1, month: 12, day: 1))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(-2), LocalDate(year: -1, month: 11, day: 1))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(-12), LocalDate(year: -1, month: 1, day: 1))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 1).addingMonths(-13), LocalDate(year: -2, month: 12, day: 1))
+        
+        // last valid day
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 31).addingMonths(1), LocalDate(year: 0, month: 2, day: 29))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 31).addingMonths(2), LocalDate(year: 0, month: 3, day: 31))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 31).addingMonths(3), LocalDate(year: 0, month: 4, day: 30))
+        XCTAssertEqual(LocalDate(year: 0, month: 1, day: 31).addingMonths(13), LocalDate(year: 1, month: 2, day: 28))
+    }
 }

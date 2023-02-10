@@ -48,6 +48,11 @@ public struct LocalDate: Hashable, Sendable {
     public func atTime(_ time: LocalTime) -> LocalDateTime {
         .init(date: self, time: time)
     }
+    
+    public func addingMonths(_ months: Int) -> LocalDate {
+        let yearMonth = YearMonth(year: year, month: month).addingMonths(months)
+        return LocalDate(year: yearMonth.year, month: yearMonth.month, day: min(day, yearMonth.lengthOfMonth))
+    }
 }
 
 extension LocalDate: CustomStringConvertible {
