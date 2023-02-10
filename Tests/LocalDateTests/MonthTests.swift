@@ -51,6 +51,24 @@ final class MonthTests: XCTestCase {
         XCTAssertEqual(month.addingMonth(-25), 12)
     }
     
+    func test_length() {
+        XCTAssertEqual(Month(1).length(isLeapYear: false), 31)
+        XCTAssertEqual(Month(2).length(isLeapYear: false), 28)
+        XCTAssertEqual(Month(3).length(isLeapYear: false), 31)
+        XCTAssertEqual(Month(4).length(isLeapYear: false), 30)
+        XCTAssertEqual(Month(5).length(isLeapYear: false), 31)
+        XCTAssertEqual(Month(6).length(isLeapYear: false), 30)
+        XCTAssertEqual(Month(7).length(isLeapYear: false), 31)
+        XCTAssertEqual(Month(8).length(isLeapYear: false), 31)
+        XCTAssertEqual(Month(9).length(isLeapYear: false), 30)
+        XCTAssertEqual(Month(10).length(isLeapYear: false), 31)
+        XCTAssertEqual(Month(11).length(isLeapYear: false), 30)
+        XCTAssertEqual(Month(12).length(isLeapYear: false), 31)
+        
+        // leap year
+        XCTAssertEqual(Month(2).length(isLeapYear: true), 29)
+    }
+    
     func test_lengthOfMonth() {
         XCTAssertEqual(Month.lengthOfMonth(1, isLeapYear: false), 31)
         XCTAssertEqual(Month.lengthOfMonth(2, isLeapYear: false), 28)

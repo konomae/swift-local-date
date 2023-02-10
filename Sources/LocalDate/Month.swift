@@ -25,6 +25,10 @@ public enum Month: UInt8, CaseIterable, Sendable {
         return Month(UInt8(remainder <= 0 ? 12 + remainder : remainder))!
     }
     
+    public func length(isLeapYear: Bool) -> Int {
+        Self.lengthOfMonth(Int(rawValue), isLeapYear: isLeapYear)
+    }
+    
     static func lengthOfMonth(_ month: Int, isLeapYear: Bool) -> Int {
         switch month {
         case 2:
