@@ -34,14 +34,8 @@ public struct LocalDate: Hashable, Sendable {
     }
     
     public func date(in timeZone: TimeZone) -> Date {
-        let components = DateComponents(
-            calendar: .gregorian,
-            timeZone: timeZone,
-            year: year,
-            month: month,
-            day: day
-        )
-        
+        var components = dateComponents
+        components.timeZone = timeZone
         return components.date!
     }
     
@@ -52,6 +46,32 @@ public struct LocalDate: Hashable, Sendable {
     public func addingMonths(_ months: Int) -> LocalDate {
         let yearMonth = YearMonth(year: year, month: month).addingMonths(months)
         return LocalDate(year: yearMonth.year, month: yearMonth.month, day: min(day, yearMonth.lengthOfMonth))
+    }
+    
+    public func until(_ endDate: LocalDate) -> Period {
+        var months = (endDate.year * 12 + endDate.month) - (year * 12 + month)
+        let days = endDate.day - day
+        
+        if months > 0, days < 0 {
+            months -= 1
+        } else if months < 0, days > 0 {
+            months += 1
+        }
+        
+        let d1 = addingMonths(months).dateComponents
+        let d2 = endDate.dateComponents
+        let (y, m) = months.quotientAndRemainder(dividingBy: 12)
+        
+        return Period(years: y, months: m, days: Calendar.gregorian.dateComponents([.day], from: d1, to: d2).day!)
+    }
+    
+    private var dateComponents: DateComponents {
+        DateComponents(
+            calendar: .gregorian,
+            year: year,
+            month: month,
+            day: day
+        )
     }
 }
 

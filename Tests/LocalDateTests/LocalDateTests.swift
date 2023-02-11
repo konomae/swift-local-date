@@ -170,4 +170,86 @@ final class LocalDateTests: XCTestCase {
         XCTAssertEqual(LocalDate(year: 0, month: 1, day: 31).addingMonths(3), LocalDate(year: 0, month: 4, day: 30))
         XCTAssertEqual(LocalDate(year: 0, month: 1, day: 31).addingMonths(13), LocalDate(year: 1, month: 2, day: 28))
     }
+
+    func test_until() {
+        // same
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 1, day: 1).until(LocalDate(year: 0, month: 1, day: 1)),
+            Period(years: 0, months: 0, days: 0)
+        )
+        
+        // basic
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 1, day: 1).until(LocalDate(year: 1, month: 3, day: 4)),
+            Period(years: 1, months: 2, days: 3)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 1, month: 3, day: 4).until(LocalDate(year: 0, month: 1, day: 1)),
+            Period(years: -1, months: -2, days: -3)
+        )
+        
+        // year boundaries
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 2, day: 28).until(LocalDate(year: 4, month: 2, day: 28)),
+            Period(years: 4, months: 0, days: 0)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 2, day: 28).until(LocalDate(year: 4, month: 2, day: 27)),
+            Period(years: 3, months: 11, days: 30)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 2, day: 29).until(LocalDate(year: 4, month: 2, day: 28)),
+            Period(years: 3, months: 11, days: 30)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 2, day: 29).until(LocalDate(year: 1, month: 3, day: 1)),
+            Period(years: 1, months: 0, days: 1)
+        )
+        
+        // year boundaries (negative)
+        XCTAssertEqual(
+            LocalDate(year: 4, month: 2, day: 28).until(LocalDate(year: 0, month: 2, day: 28)),
+            Period(years: -4, months: 0, days: 0)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 4, month: 2, day: 27).until(LocalDate(year: 0, month: 2, day: 28)),
+            Period(years: -3, months: -11, days: -28)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 4, month: 2, day: 28).until(LocalDate(year: 0, month: 2, day: 29)),
+            Period(years: -3, months: -11, days: -28)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 1, month: 3, day: 1).until(LocalDate(year: 0, month: 2, day: 29)),
+            Period(years: -1, months: 0, days: -1)
+        )
+        
+        // days
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 2, day: 29).until(LocalDate(year: 0, month: 3, day: 1)),
+            Period(years: 0, months: 0, days: 1)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 2, day: 28).until(LocalDate(year: 0, month: 3, day: 1)),
+            Period(years: 0, months: 0, days: 2)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 1, month: 2, day: 28).until(LocalDate(year: 1, month: 3, day: 1)),
+            Period(years: 0, months: 0, days: 1)
+        )
+        
+        // days (negative)
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 3, day: 1).until(LocalDate(year: 0, month: 2, day: 29)),
+            Period(years: 0, months: 0, days: -1)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 0, month: 3, day: 1).until(LocalDate(year: 0, month: 2, day: 28)),
+            Period(years: 0, months: 0, days: -2)
+        )
+        XCTAssertEqual(
+            LocalDate(year: 1, month: 3, day: 1).until(LocalDate(year: 1, month: 2, day: 28)),
+            Period(years: 0, months: 0, days: -1)
+        )
+    }
 }
