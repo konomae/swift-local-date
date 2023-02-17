@@ -1,0 +1,25 @@
+name: swiftformat
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/swiftformat.yml'
+      - '.swiftformat'
+      - '**/*.swift'
+  pull_request:
+    paths:
+      - '.github/workflows/swiftformat.yml'
+      - '.swiftformat'
+      - '**/*.swift'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  swiftformat:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/nicklockwood/swiftformat:0.50.9
+    steps:
+    - uses: actions/checkout@v3
+    - name: swiftformat
+      run: swiftformat . --reporter github-actions-log --lint
