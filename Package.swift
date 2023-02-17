@@ -9,7 +9,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "LocalDate",
-            targets: ["LocalDate"]),
+            targets: ["LocalDate"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -22,15 +23,18 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "LocalDate",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "LocalDateTests",
-            dependencies: ["LocalDate"]),
+            dependencies: ["LocalDate"]
+        ),
         .executableTarget(
             name: "swift-local-date-benchmark",
             dependencies: [
                 "LocalDate",
                 .product(name: "Benchmark", package: "swift-benchmark"),
-            ]),
+            ]
+        ),
     ]
 )
