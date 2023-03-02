@@ -40,9 +40,9 @@ public struct OffsetDateTime: Hashable, Sendable {
             throw FormatError()
         }
 
-        self.init(
-            dateTime: try LocalDateTime(from: Substring(string[..<index])),
-            offset: try ZoneOffset(from: Substring(string[index...]))
+        try self.init(
+            dateTime: LocalDateTime(from: Substring(string[..<index])),
+            offset: ZoneOffset(from: Substring(string[index...]))
         )
     }
     

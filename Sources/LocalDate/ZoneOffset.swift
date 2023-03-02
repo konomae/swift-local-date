@@ -18,7 +18,7 @@ public struct ZoneOffset: Hashable, Sendable {
     }
     
     public init(from string: some StringProtocol) throws {
-        self.init(second: try parse(string))
+        try self.init(second: parse(string))
     }
     
     public var timeZone: TimeZone {
