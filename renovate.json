@@ -4,6 +4,7 @@
   "packageRules": [
     {
       "groupName": "SwiftFormat",
+      "matchManagers": ["github-actions", "swift"],
       "matchPackageNames": [
         "nicklockwood/swiftformat",
         "ghcr.io/nicklockwood/swiftformat"
