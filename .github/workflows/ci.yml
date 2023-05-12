@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, wasm]
   pull_request:
     branches: [main]
 
@@ -44,3 +44,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run benchmark
         run: swift run -c release swift-local-date-benchmark
+
+  wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bytecodealliance/actions/wasmtime/setup@v1
+      - uses: swiftwasm/setup-swiftwasm@v1
+        with:
+          swift-version: "wasm-5.9.2-RELEASE"
+      - name: Build tests
+        run: swift build --triple wasm32-unknown-wasi --build-tests
+        # run: swift build --triple wasm32-unknown-unknown --target LocalDateTests
+      - name: Run tests
+        run: wasmtime .build/debug/swift-local-datePackageTests.wasm

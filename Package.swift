@@ -29,12 +29,12 @@ let package = Package(
             name: "LocalDateTests",
             dependencies: ["LocalDate"]
         ),
-        .executableTarget(
-            name: "swift-local-date-benchmark",
-            dependencies: [
-                "LocalDate",
-                .product(name: "Benchmark", package: "swift-benchmark"),
-            ]
-        ),
+        // .executableTarget(
+        //     name: "swift-local-date-benchmark",
+        //     dependencies: [
+        //         "LocalDate",
+        //         .product(name: "Benchmark", package: "swift-benchmark"),
+        //     ]
+        // ),
     ]
 )
