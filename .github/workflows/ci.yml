@@ -2,25 +2,25 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run tests
-      run: swift test --enable-code-coverage
-    - name: llvm-cov export
-      run: |
-        xcrun llvm-cov export \
-          .build/debug/swift-local-datePackageTests.xctest/Contents/MacOS/swift-local-datePackageTests \
-          -format=lcov \
-          -instr-profile .build/debug/codecov/default.profdata \
-          > .build/debug/codecov/info.lcov
-    - uses: codecov/codecov-action@v3
+      - uses: actions/checkout@v3
+      - name: Run tests
+        run: swift test --enable-code-coverage
+      - name: llvm-cov export
+        run: |
+          xcrun llvm-cov export \
+            .build/debug/swift-local-datePackageTests.xctest/Contents/MacOS/swift-local-datePackageTests \
+            -format=lcov \
+            -instr-profile .build/debug/codecov/default.profdata \
+            > .build/debug/codecov/info.lcov
+      - uses: codecov/codecov-action@v3
 
   linux:
     runs-on: ubuntu-latest
@@ -37,6 +37,6 @@ jobs:
   benchmark:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run benchmark
-      run: swift run -c release swift-local-date-benchmark
+      - uses: actions/checkout@v3
+      - name: Run benchmark
+        run: swift run -c release swift-local-date-benchmark
