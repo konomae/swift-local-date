@@ -23,7 +23,7 @@ jobs:
         with:
           languages: swift
       # - uses: github/codeql-action/autobuild@v2
-      - run: swift build --arch arm64
+      - run: swift build
       - uses: github/codeql-action/analyze@v2
         with:
           category: "/language:swift"
