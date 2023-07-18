@@ -18,7 +18,7 @@ jobs:
   swiftformat:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nicklockwood/swiftformat:0.51.12
+      image: ghcr.io/nicklockwood/swiftformat:0.51.13
     steps:
     - uses: actions/checkout@v3
     - name: swiftformat
