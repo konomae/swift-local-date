@@ -20,6 +20,6 @@ jobs:
     container:
       image: ghcr.io/nicklockwood/swiftformat:0.52.3
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: swiftformat
       run: swiftformat . --reporter github-actions-log --lint
