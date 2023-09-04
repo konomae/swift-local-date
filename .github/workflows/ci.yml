@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run tests
         run: swift test --enable-code-coverage
       - name: llvm-cov export
@@ -31,13 +31,13 @@ jobs:
           - 5.8
     container: swift:${{ matrix.swift }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run tests
         run: swift test
 
   benchmark:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run benchmark
         run: swift run -c release swift-local-date-benchmark
