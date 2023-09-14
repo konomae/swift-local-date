@@ -20,7 +20,7 @@ jobs:
             -format=lcov \
             -instr-profile .build/debug/codecov/default.profdata \
             > .build/debug/codecov/info.lcov
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
 
   linux:
     runs-on: ubuntu-latest
