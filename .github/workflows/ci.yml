@@ -31,6 +31,7 @@ jobs:
         swift:
           - 5.7
           - 5.8
+          - 5.9
     container: swift:${{ matrix.swift }}
     steps:
       - uses: actions/checkout@v4
