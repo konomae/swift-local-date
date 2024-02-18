@@ -13,7 +13,7 @@ This library provides the ability to convert a `LocalDate` to a `Date` or `Strin
 Add the following line to the dependencies in your `Package.swift` file.
 
 ```swift
-.package(url: "https://github.com/konomae/swift-local-date", from: "0.2.0"),
+.package(url: "https://github.com/konomae/swift-local-date", from: "0.4.0"),
 ```
 
 ## Example
