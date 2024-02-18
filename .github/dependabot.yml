@@ -8,3 +8,7 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+    # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#github-actions
+    # > Docker Hub and GitHub Packages Container registry URLs are currently not supported.
+    # So using renovate instead.
+    open-pull-requests-limit: 0
