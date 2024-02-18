@@ -1,5 +1,7 @@
 version: 2
 updates:
+  # dependabot is able to update `Package.resolved`. But renovate isn't.
+  # So trying to use both.
   - package-ecosystem: "swift"
     directory: "/"
     schedule:
