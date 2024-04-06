@@ -10,7 +10,7 @@ on:
 
 jobs:
   analyze:
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 20
     permissions:
       actions: read
