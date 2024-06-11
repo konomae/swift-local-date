@@ -4,7 +4,7 @@
   "packageRules": [
     {
       "groupName": "SwiftFormat",
-      "matchPackageNames": [
+      "matchDepNames": [
         "nicklockwood/SwiftFormat",
         "ghcr.io/nicklockwood/swiftformat"
       ]
