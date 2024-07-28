@@ -16,7 +16,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/google/swift-benchmark", from: "0.1.2"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.2"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.3"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
