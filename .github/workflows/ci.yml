@@ -20,7 +20,7 @@ jobs:
             -format=lcov \
             -instr-profile .build/debug/codecov/default.profdata \
             > .build/debug/codecov/info.lcov
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
