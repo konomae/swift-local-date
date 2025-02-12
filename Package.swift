@@ -36,5 +36,6 @@ let package = Package(
                 .product(name: "Benchmark", package: "swift-benchmark"),
             ]
         ),
-    ]
+    ],
+    swiftLanguageVersions: [.version("6"), .v5]
 )
