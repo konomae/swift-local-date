@@ -22,7 +22,7 @@ jobs:
     - name: swiftformat
       env:
         # renovate: datasource=docker depName=ghcr.io/nicklockwood/swiftformat
-        SWIFTFORMAT_VERSION: 0.57.1
+        SWIFTFORMAT_VERSION: 0.57.2
       run: >
         docker run \
           --rm \
