@@ -9,14 +9,14 @@ final class LocalDateTests: XCTestCase {
         XCTAssertEqual(date.day, 1)
     }
     
-    func test_init_from_date_in_timeZone() {
+    func test_init_from_date_in_timeZone() throws {
         XCTAssertEqual(
-            LocalDate(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!),
+            try LocalDate(from: Date(timeIntervalSince1970: 0), in: XCTUnwrap(TimeZone(secondsFromGMT: 0))),
             LocalDate(year: 1970, month: 1, day: 1)
         )
         
         XCTAssertEqual(
-            LocalDate(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: -3600)!),
+            try LocalDate(from: Date(timeIntervalSince1970: 0), in: XCTUnwrap(TimeZone(secondsFromGMT: -3600))),
             LocalDate(year: 1969, month: 12, day: 31)
         )
     }
@@ -69,14 +69,14 @@ final class LocalDateTests: XCTestCase {
         }
     }
     
-    func test_date_in_timeZone() {
+    func test_date_in_timeZone() throws {
         XCTAssertEqual(
-            LocalDate(year: 1970, month: 1, day: 1).date(in: TimeZone(secondsFromGMT: 0)!),
+            try LocalDate(year: 1970, month: 1, day: 1).date(in: XCTUnwrap(TimeZone(secondsFromGMT: 0))),
             Date(timeIntervalSince1970: 0)
         )
         
         XCTAssertEqual(
-            LocalDate(year: 1970, month: 1, day: 1).date(in: TimeZone(secondsFromGMT: -3600)!),
+            try LocalDate(year: 1970, month: 1, day: 1).date(in: XCTUnwrap(TimeZone(secondsFromGMT: -3600))),
             Date(timeIntervalSince1970: 3600)
         )
     }

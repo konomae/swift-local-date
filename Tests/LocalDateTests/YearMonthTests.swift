@@ -8,14 +8,14 @@ final class YearMonthTests: XCTestCase {
         XCTAssertEqual(date.month, 1)
     }
     
-    func test_init_from_date_in_timeZone() {
+    func test_init_from_date_in_timeZone() throws {
         XCTAssertEqual(
-            YearMonth(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!),
+            try YearMonth(from: Date(timeIntervalSince1970: 0), in: XCTUnwrap(TimeZone(secondsFromGMT: 0))),
             YearMonth(year: 1970, month: 1)
         )
         
         XCTAssertEqual(
-            YearMonth(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: -3600)!),
+            try YearMonth(from: Date(timeIntervalSince1970: 0), in: XCTUnwrap(TimeZone(secondsFromGMT: -3600))),
             YearMonth(year: 1969, month: 12)
         )
     }

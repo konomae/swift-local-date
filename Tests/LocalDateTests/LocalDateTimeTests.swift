@@ -21,14 +21,14 @@ final class LocalDateTimeTests: XCTestCase {
         XCTAssertEqual(dateTime.nanosecond, 4)
     }
     
-    func test_init_from_date_in_timeZone() {
+    func test_init_from_date_in_timeZone() throws {
         XCTAssertEqual(
-            LocalDateTime(from: Date(timeIntervalSince1970: 0), in: TimeZone(secondsFromGMT: 0)!),
+            try LocalDateTime(from: Date(timeIntervalSince1970: 0), in: XCTUnwrap(TimeZone(secondsFromGMT: 0))),
             LocalDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0)
         )
         
         XCTAssertEqual(
-            LocalDateTime(from: Date(timeIntervalSince1970: 3599), in: TimeZone(secondsFromGMT: -3600)!),
+            try LocalDateTime(from: Date(timeIntervalSince1970: 3599), in: XCTUnwrap(TimeZone(secondsFromGMT: -3600))),
             LocalDateTime(year: 1969, month: 12, day: 31, hour: 23, minute: 59, second: 59, nanosecond: 0)
         )
     }
