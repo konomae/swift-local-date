@@ -10,7 +10,8 @@
       "matchDepNames": [
         "nicklockwood/SwiftFormat",
         "ghcr.io/nicklockwood/swiftformat"
-      ]
+      ],
+      "pinDigests": false
     }
   ]
 }
