@@ -1,4 +1,4 @@
---swiftversion 5.7
+--swiftversion 6.0
 --nospaceoperators ...,..<
 --ifdef no-indent
 --trimwhitespace nonblank-lines
