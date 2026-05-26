@@ -12,8 +12,7 @@ on:
       - '.swiftformat'
       - '**/*.swift'
   workflow_dispatch:
-permissions:
-  contents: read
+permissions: {}
 jobs:
   swiftformat:
     runs-on: ubuntu-latest
