@@ -66,6 +66,7 @@ struct ZoneOffsetTests {
     func test_init_from_decoder() throws {
         #expect(try JSONDecoder().decode(ZoneOffset.self, from: Data("\"-02:30\"".utf8)) == ZoneOffset(second: -9000))
 
+        #if compiler(>=6.1)
         struct A: Decodable {
             var b: B
         }
@@ -84,6 +85,7 @@ struct ZoneOffsetTests {
         } else {
             Issue.record()
         }
+        #endif
     }
 
     @Test

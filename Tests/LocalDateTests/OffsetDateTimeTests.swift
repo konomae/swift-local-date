@@ -107,6 +107,7 @@ struct OffsetDateTimeTests {
             offset: ZoneOffset(second: 3600)
         ))
 
+        #if compiler(>=6.1)
         struct A: Decodable {
             var b: B
         }
@@ -125,6 +126,7 @@ struct OffsetDateTimeTests {
         } else {
             Issue.record()
         }
+        #endif
     }
 
     @Test

@@ -67,6 +67,7 @@ struct YearMonthTests {
     func test_init_from_decoder() throws {
         #expect(try JSONDecoder().decode(YearMonth.self, from: Data("\"1970-01\"".utf8)) == YearMonth(year: 1970, month: 1))
         
+        #if compiler(>=6.1)
         struct A: Decodable {
             var b: B
         }
@@ -85,6 +86,7 @@ struct YearMonthTests {
         } else {
             Issue.record()
         }
+        #endif
     }
     
     @Test

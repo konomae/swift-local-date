@@ -72,6 +72,7 @@ struct LocalDateTimeTests {
             time: LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 400000000)
         ))
         
+        #if compiler(>=6.1)
         struct A: Decodable {
             var b: B
         }
@@ -90,6 +91,7 @@ struct LocalDateTimeTests {
         } else {
             Issue.record()
         }
+        #endif
     }
     
     @Test

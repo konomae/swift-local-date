@@ -61,6 +61,7 @@ struct LocalTimeTests {
     func test_init_from_decoder() throws {
         #expect(try JSONDecoder().decode(LocalTime.self, from: Data("\"01:02:03.4\"".utf8)) == LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 400000000))
         
+        #if compiler(>=6.1)
         struct A: Decodable {
             var b: B
         }
@@ -79,6 +80,7 @@ struct LocalTimeTests {
         } else {
             Issue.record()
         }
+        #endif
     }
     
     @Test

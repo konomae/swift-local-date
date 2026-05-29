@@ -92,6 +92,7 @@ struct LocalDateTests {
     func test_init_from_decoder() throws {
         #expect(try JSONDecoder().decode(LocalDate.self, from: Data("\"1970-01-01\"".utf8)) == LocalDate(year: 1970, month: 1, day: 1))
 
+        #if compiler(>=6.1)
         struct A: Decodable {
             var b: B
         }
@@ -110,6 +111,7 @@ struct LocalDateTests {
         } else {
             Issue.record()
         }
+        #endif
     }
 
     @Test
