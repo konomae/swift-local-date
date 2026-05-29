@@ -1,26 +1,27 @@
 @testable import LocalDate
-import XCTest
+import Testing
 
-final class YearTests: XCTestCase {
+struct YearTests {
+    @Test
     func test_isLeapYear() {
-        XCTAssertTrue(isLeapYear(0))
+        #expect(isLeapYear(0))
         
-        XCTAssertFalse(isLeapYear(1))
-        XCTAssertFalse(isLeapYear(2))
-        XCTAssertFalse(isLeapYear(3))
-        XCTAssertTrue(isLeapYear(4))
-        XCTAssertFalse(isLeapYear(5))
+        #expect(!isLeapYear(1))
+        #expect(!isLeapYear(2))
+        #expect(!isLeapYear(3))
+        #expect(isLeapYear(4))
+        #expect(!isLeapYear(5))
         
-        XCTAssertFalse(isLeapYear(100))
-        XCTAssertFalse(isLeapYear(200))
-        XCTAssertFalse(isLeapYear(300))
-        XCTAssertTrue(isLeapYear(400))
-        XCTAssertFalse(isLeapYear(500))
+        #expect(!isLeapYear(100))
+        #expect(!isLeapYear(200))
+        #expect(!isLeapYear(300))
+        #expect(isLeapYear(400))
+        #expect(!isLeapYear(500))
         
-        XCTAssertFalse(isLeapYear(1000))
-        XCTAssertTrue(isLeapYear(2000))
-        XCTAssertFalse(isLeapYear(3000))
-        XCTAssertTrue(isLeapYear(4000))
-        XCTAssertFalse(isLeapYear(5000))
+        #expect(!isLeapYear(1000))
+        #expect(isLeapYear(2000))
+        #expect(!isLeapYear(3000))
+        #expect(isLeapYear(4000))
+        #expect(!isLeapYear(5000))
     }
 }
