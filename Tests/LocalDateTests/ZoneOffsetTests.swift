@@ -10,7 +10,7 @@ struct ZoneOffsetTests {
     }
 
     @Test
-    func test_init_hour_minute() {
+    func init_hour_minute() {
         #expect(ZoneOffset(hour: 1).second == 3600)
         #expect(ZoneOffset(hour: 2, minute: 30).second == 9000)
         #expect(ZoneOffset(hour: -1).second == -3600)
@@ -18,20 +18,20 @@ struct ZoneOffsetTests {
     }
 
     @Test
-    func test_init_from_timeZone() throws {
+    func init_from_timeZone() throws {
         #expect(try ZoneOffset(timeZone: #require(TimeZone(secondsFromGMT: 3600))) == ZoneOffset(second: 3600))
         #expect(try ZoneOffset(timeZone: #require(TimeZone(secondsFromGMT: -9000))) == ZoneOffset(second: -9000))
     }
 
     @Test
-    func test_init_from_string() throws {
+    func init_from_string() throws {
         #expect(try ZoneOffset(from: "+02:30") == ZoneOffset(second: 9000))
         #expect(try ZoneOffset(from: "-02:30") == ZoneOffset(second: -9000))
         #expect(try ZoneOffset(from: "Z") == ZoneOffset(second: 0))
     }
 
     @Test
-    func test_init_from_string_error() throws {
+    func init_from_string_error() throws {
         #expect(throws: FormatError()) {
             try ZoneOffset(from: "+")
         }
@@ -57,13 +57,13 @@ struct ZoneOffsetTests {
     }
 
     @Test
-    func test_init_from_description() {
+    func init_from_description() {
         #expect(ZoneOffset("") == nil)
         #expect(ZoneOffset("-02:30") == ZoneOffset(second: -9000))
     }
 
     @Test
-    func test_init_from_decoder() throws {
+    func init_from_decoder() throws {
         #expect(try JSONDecoder().decode(ZoneOffset.self, from: Data("\"-02:30\"".utf8)) == ZoneOffset(second: -9000))
 
         #if compiler(>=6.1)
@@ -89,12 +89,12 @@ struct ZoneOffsetTests {
     }
 
     @Test
-    func test_encode_to_encoder() throws {
+    func encode_to_encoder() throws {
         #expect(try JSONEncoder().encode(ZoneOffset(second: -9000)) == Data("\"-02:30\"".utf8))
     }
 
     @Test
-    func test_comparable() {
+    func comparable() {
         // +01:00 < +00:00
         #expect(ZoneOffset(second: 3600) < ZoneOffset(second: 0))
         // +00:00 < -01:00

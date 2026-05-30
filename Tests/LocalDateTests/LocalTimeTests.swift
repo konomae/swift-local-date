@@ -13,14 +13,14 @@ struct LocalTimeTests {
     }
     
     @Test
-    func test_init_from_date_in_timeZone() throws {
+    func init_from_date_in_timeZone() throws {
         #expect(try LocalTime(from: Date(timeIntervalSince1970: 0), in: #require(TimeZone(secondsFromGMT: 0))) == LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 0))
         
         #expect(try LocalTime(from: Date(timeIntervalSince1970: 3599), in: #require(TimeZone(secondsFromGMT: -3600))) == LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 0))
     }
     
     @Test
-    func test_init_from_string() throws {
+    func init_from_string() throws {
         #expect(try LocalTime(from: "00:00:00") == LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 0))
         #expect(try LocalTime(from: "23:59:59") == LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 0))
         
@@ -32,7 +32,7 @@ struct LocalTimeTests {
     }
     
     @Test
-    func test_init_from_string_error() throws {
+    func init_from_string_error() throws {
         #expect(throws: FormatError()) {
             try LocalTime(from: "00:00:00.")
         }
@@ -52,13 +52,13 @@ struct LocalTimeTests {
     }
     
     @Test
-    func test_init_from_description() {
+    func init_from_description() {
         #expect(LocalTime("235959") == nil)
         #expect(LocalTime(LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 4).description) == LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 4))
     }
     
     @Test
-    func test_init_from_decoder() throws {
+    func init_from_decoder() throws {
         #expect(try JSONDecoder().decode(LocalTime.self, from: Data("\"01:02:03.4\"".utf8)) == LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 400000000))
         
         #if compiler(>=6.1)
@@ -84,12 +84,12 @@ struct LocalTimeTests {
     }
     
     @Test
-    func test_encode_to_encoder() throws {
+    func encode_to_encoder() throws {
         #expect(try JSONEncoder().encode(LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 4)) == Data("\"01:02:03.000000004\"".utf8))
     }
     
     @Test
-    func test_comparable() {
+    func comparable() {
         #expect(LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 0) < LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 1))
         
         #expect(LocalTime(hour: 0, minute: 0, second: 0, nanosecond: 0) < LocalTime(hour: 0, minute: 0, second: 1, nanosecond: 0))

@@ -12,7 +12,7 @@ struct MonthTests {
     }
     
     @Test
-    func test_init_integerLiteral() {
+    func init_integerLiteral() {
         #expect(Month(1) == 1)
         #expect(Month(12) == 12)
         #expect(Month(integerLiteral: 1) == 1)
@@ -20,7 +20,7 @@ struct MonthTests {
     }
     
     @Test
-    func test_init_text() {
+    func init_text() {
         #expect(Month("0") == nil)
         #expect(Month("1") == Month(1))
         #expect(Month("12") == Month(12))
@@ -94,13 +94,13 @@ struct MonthTests {
     }
     
     @Test
-    func test_description() {
+    func description() {
         #expect(String(describing: Month(1)) == "1")
         #expect(String(describing: Month(12)) == "12")
     }
     
     @Test
-    func test_comparable() {
+    func comparable() {
         #expect(Month(1) < Month(2))
     }
 }
