@@ -24,14 +24,14 @@ struct LocalDateTimeTests {
     }
     
     @Test
-    func test_init_from_date_in_timeZone() throws {
+    func init_from_date_in_timeZone() throws {
         #expect(try LocalDateTime(from: Date(timeIntervalSince1970: 0), in: #require(TimeZone(secondsFromGMT: 0))) == LocalDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0))
         
         #expect(try LocalDateTime(from: Date(timeIntervalSince1970: 3599), in: #require(TimeZone(secondsFromGMT: -3600))) == LocalDateTime(year: 1969, month: 12, day: 31, hour: 23, minute: 59, second: 59, nanosecond: 0))
     }
     
     @Test
-    func test_init_from_string() throws {
+    func init_from_string() throws {
         #expect(try LocalDateTime(from: "1970-01-01T23:59:59.9") == LocalDateTime(
             date: LocalDate(year: 1970, month: 1, day: 1),
             time: LocalTime(hour: 23, minute: 59, second: 59, nanosecond: 900000000)
@@ -39,7 +39,7 @@ struct LocalDateTimeTests {
     }
     
     @Test
-    func test_init_from_string_error() {
+    func init_from_string_error() {
         #expect(throws: FormatError()) {
             try LocalDateTime(from: "1970-01-01 23:59:59.9")
         }
@@ -57,7 +57,7 @@ struct LocalDateTimeTests {
     }
     
     @Test
-    func test_init_from_description() {
+    func init_from_description() {
         #expect(LocalDateTime("1970-12-31 01:02:03.4") == nil)
         #expect(LocalDateTime("1970-12-31T01:02:03.04") == LocalDateTime(
             date: LocalDate(year: 1970, month: 12, day: 31),
@@ -66,7 +66,7 @@ struct LocalDateTimeTests {
     }
     
     @Test
-    func test_init_from_decoder() throws {
+    func init_from_decoder() throws {
         #expect(try JSONDecoder().decode(LocalDateTime.self, from: Data("\"1970-12-31T01:02:03.4\"".utf8)) == LocalDateTime(
             date: LocalDate(year: 1970, month: 12, day: 31),
             time: LocalTime(hour: 1, minute: 2, second: 3, nanosecond: 400000000)
@@ -95,12 +95,12 @@ struct LocalDateTimeTests {
     }
     
     @Test
-    func test_encode_to_encoder() throws {
+    func encode_to_encoder() throws {
         #expect(try JSONEncoder().encode(LocalDateTime(year: 1970, month: 12, day: 31, hour: 1, minute: 2, second: 3, nanosecond: 4)) == Data("\"1970-12-31T01:02:03.000000004\"".utf8))
     }
     
     @Test
-    func test_comparable() {
+    func comparable() {
         #expect(LocalDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0) < LocalDateTime(year: 1970, month: 1, day: 2, hour: 0, minute: 0, second: 0, nanosecond: 0))
         
         #expect(LocalDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 0) < LocalDateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, nanosecond: 1))

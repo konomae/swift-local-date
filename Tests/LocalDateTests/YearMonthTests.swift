@@ -11,20 +11,20 @@ struct YearMonthTests {
     }
     
     @Test
-    func test_init_from_date_in_timeZone() throws {
+    func init_from_date_in_timeZone() throws {
         #expect(try YearMonth(from: Date(timeIntervalSince1970: 0), in: #require(TimeZone(secondsFromGMT: 0))) == YearMonth(year: 1970, month: 1))
         
         #expect(try YearMonth(from: Date(timeIntervalSince1970: 0), in: #require(TimeZone(secondsFromGMT: -3600))) == YearMonth(year: 1969, month: 12))
     }
     
     @Test
-    func test_init_from_string() throws {
+    func init_from_string() throws {
         #expect(try YearMonth(from: "1970-12") == YearMonth(year: 1970, month: 12))
         #expect(try YearMonth(from: "-0001-01") == YearMonth(year: -1, month: 1))
     }
     
     @Test
-    func test_init_from_string_error() {
+    func init_from_string_error() {
         #expect(throws: FormatError()) {
             try YearMonth(from: "")
         }
@@ -58,13 +58,13 @@ struct YearMonthTests {
     }
     
     @Test
-    func test_init_from_description() {
+    func init_from_description() {
         #expect(YearMonth("197001") == nil)
         #expect(YearMonth(YearMonth(year: 1970, month: 1).description) == YearMonth(year: 1970, month: 1))
     }
     
     @Test
-    func test_init_from_decoder() throws {
+    func init_from_decoder() throws {
         #expect(try JSONDecoder().decode(YearMonth.self, from: Data("\"1970-01\"".utf8)) == YearMonth(year: 1970, month: 1))
         
         #if compiler(>=6.1)
@@ -90,12 +90,12 @@ struct YearMonthTests {
     }
     
     @Test
-    func test_encode_to_encoder() throws {
+    func encode_to_encoder() throws {
         #expect(try JSONEncoder().encode(YearMonth(year: 1970, month: 1)) == Data("\"1970-01\"".utf8))
     }
     
     @Test
-    func test_comparable() {
+    func comparable() {
         #expect(YearMonth(year: 1969, month: 12) < YearMonth(year: 1970, month: 1))
         
         #expect(YearMonth(year: 1970, month: 1) < YearMonth(year: 1970, month: 2))

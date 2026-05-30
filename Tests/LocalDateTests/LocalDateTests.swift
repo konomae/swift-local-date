@@ -12,21 +12,21 @@ struct LocalDateTests {
     }
 
     @Test
-    func test_init_from_date_in_timeZone() throws {
+    func init_from_date_in_timeZone() throws {
         #expect(try LocalDate(from: Date(timeIntervalSince1970: 0), in: #require(TimeZone(secondsFromGMT: 0))) == LocalDate(year: 1970, month: 1, day: 1))
 
         #expect(try LocalDate(from: Date(timeIntervalSince1970: 0), in: #require(TimeZone(secondsFromGMT: -3600))) == LocalDate(year: 1969, month: 12, day: 31))
     }
 
     @Test
-    func test_init_from_string() throws {
+    func init_from_string() throws {
         #expect(try LocalDate(from: "1970-01-01") == LocalDate(year: 1970, month: 1, day: 1))
         #expect(try LocalDate(from: "1970-12-31") == LocalDate(year: 1970, month: 12, day: 31))
         #expect(try LocalDate(from: "-0001-01-01") == LocalDate(year: -1, month: 1, day: 1))
     }
 
     @Test
-    func test_init_from_string_error() {
+    func init_from_string_error() {
         #expect(throws: FormatError()) {
             try LocalDate(from: "")
         }
@@ -69,7 +69,7 @@ struct LocalDateTests {
     }
 
     @Test
-    func test_date_in_timeZone() throws {
+    func date_in_timeZone() throws {
         #expect(try LocalDate(year: 1970, month: 1, day: 1).date(in: #require(TimeZone(secondsFromGMT: 0))) == Date(timeIntervalSince1970: 0))
 
         #expect(try LocalDate(year: 1970, month: 1, day: 1).date(in: #require(TimeZone(secondsFromGMT: -3600))) == Date(timeIntervalSince1970: 3600))
@@ -83,13 +83,13 @@ struct LocalDateTests {
     }
 
     @Test
-    func test_init_from_description() {
+    func init_from_description() {
         #expect(LocalDate("19700101") == nil)
         #expect(LocalDate(LocalDate(year: 1970, month: 1, day: 1).description) == LocalDate(year: 1970, month: 1, day: 1))
     }
 
     @Test
-    func test_init_from_decoder() throws {
+    func init_from_decoder() throws {
         #expect(try JSONDecoder().decode(LocalDate.self, from: Data("\"1970-01-01\"".utf8)) == LocalDate(year: 1970, month: 1, day: 1))
 
         #if compiler(>=6.1)
@@ -115,12 +115,12 @@ struct LocalDateTests {
     }
 
     @Test
-    func test_encode_to_encoder() throws {
+    func encode_to_encoder() throws {
         #expect(try JSONEncoder().encode(LocalDate(year: 1970, month: 1, day: 1)) == Data("\"1970-01-01\"".utf8))
     }
 
     @Test
-    func test_comparable() {
+    func comparable() {
         #expect(LocalDate(year: 1969, month: 12, day: 31) < LocalDate(year: 1970, month: 1, day: 1))
 
         #expect(LocalDate(year: 1970, month: 1, day: 1) < LocalDate(year: 1970, month: 2, day: 1))
