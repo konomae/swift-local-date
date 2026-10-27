@@ -7,6 +7,10 @@
   "minimumReleaseAge": "1 day",
   "packageRules": [
     {
+      "matchUpdateTypes": ["digest", "minor", "patch"],
+      "automerge": true
+    },
+    {
       "groupName": "SwiftFormat",
       "matchDepNames": [
         "nicklockwood/SwiftFormat",
