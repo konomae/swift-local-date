@@ -4,6 +4,7 @@
     "config:best-practices",
     "customManagers:githubActionsVersions"
   ],
+  "minimumReleaseAge": "1 day",
   "packageRules": [
     {
       "groupName": "SwiftFormat",
